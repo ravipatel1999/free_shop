@@ -7,6 +7,7 @@ abstract class Routes {
   static const ON_BORDING = _Paths.ON_BORDING;
   static const LANGUSE = _Paths.LANGUSE;
   static const SIGN_UP = _Paths.SIGN_UP;
+  static const DASHBORD = _Paths.DASHBORD;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const ON_BORDING = '/on-bording';
   static const LANGUSE = '/languse';
   static const SIGN_UP = '/sign-up';
+  static const DASHBORD = '/dashbord';
 }

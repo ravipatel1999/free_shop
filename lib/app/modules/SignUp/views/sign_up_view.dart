@@ -1,5 +1,6 @@
 import 'package:eccomerce_app/app/components/TextField/form_text_field.dart';
 import 'package:eccomerce_app/app/custom/button.dart';
+import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,92 +46,85 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                 ),
                 SizedBox(height: height * 0.05),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: controller.selectCountry,
-                          child: Container(
-                            // height: 45,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.network(
-                                    controller.flagUrl.value,
-                                    width: 20,
-                                    height: 20,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Icon(Icons.error,
-                                          color: Colors.red);
-                                    },
-                                  ),
-                                  SizedBox(width: 8.0),
-                                  Text(
-                                    controller.countryCode.value,
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.grey[500],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                    GestureDetector(
+                      onTap: controller.selectCountry,
+                      child: Container(
+                        // height: ,
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        SizedBox(width: width * 0.02),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 11, horizontal: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              CustomTextFormField(
-                                borderDecoration: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    color: AppColors.blackColor,
-                                    width: 1,
-                                  ),
+                              Image.network(
+                                controller.flagUrl.value,
+                                width: 20,
+                                height: 20,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons.error,
+                                      color: Colors.red);
+                                },
+                              ),
+                              const SizedBox(width: 8.0),
+                              Text(
+                                controller.countryCode.value,
+                                style: TextStyle(
+                                  color: Colors.grey[700],
                                 ),
-                                autofocus: true,
-                                labelText: 'Mobile Number',
-                                hintText: '10 digit mobile number',
-                                textInputType: TextInputType.phone,
-                                controller: controller.phoneController,
-                                validator: (value) {
-                                  if (!isValidPhone(value)) {
-                                    return "Enter a valid 10-digit phone number";
-                                  }
-                                  return null;
-                                },
-                                focusNode: controller.focusNode,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(10),
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                onChanged: (text) {
-                                  if (text.length == 10) {
-                                    FocusScope.of(context).unfocus();
-
-                                    controller.checkButtonState();
-                                  }
-                                },
+                              ),
+                              Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.grey[500],
                               ),
                             ],
                           ),
                         ),
-                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: CustomTextFormField(
+                        borderDecoration: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.blackColor,
+                            width: 1,
+                          ),
+                        ),
+                        autofocus: true,
+                        // labelText: 'Mobile Number',
+                        hintText: '10 digit mobile number',
+                        textInputType: TextInputType.phone,
+                        controller: controller.phoneController,
+                        validator: (value) {
+                          if (!isValidPhone(value)) {
+                            return "Enter a valid 10-digit phone number";
+                          }
+                          return null;
+                        },
+                        focusNode: controller.focusNode,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(10),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        onChanged: (text) {
+                          if (text.length == 10) {
+                            FocusScope.of(context).unfocus();
+
+                            controller.checkButtonState();
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -205,10 +199,12 @@ class SignUpView extends GetView<SignUpController> {
                               if (controller.formKey.currentState?.validate() ??
                                   false) {}
                             }
-                          : () {},
+                          : () {
+                              Get.toNamed(Routes.DASHBORD);
+                            },
                       color: controller.isButtonEnabled.value
                           ? AppColors.buttonColor
-                          : Color.fromARGB(255, 194, 191, 192)),
+                          : const Color(0xFFC2BFC0)),
                 ),
               ],
             ),
