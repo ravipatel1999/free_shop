@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
+import '../components/testStyle/textStyle.dart';
 
 class CustomHeader extends StatelessWidget {
   const CustomHeader({super.key});
@@ -25,7 +27,7 @@ class CustomHeader extends StatelessWidget {
               radius: 25,
               backgroundColor: Colors.grey[200],
               child: const Icon(Icons.person,
-                  size: 30, color: Colors.grey), // Default profile icon
+                  size: 30, color: Colors.grey), 
             ),
             const SizedBox(width: 10),
             Column(
@@ -47,9 +49,17 @@ class CustomHeader extends StatelessWidget {
           ],
         ),
         IconButton(
-          icon: const Icon(Icons.notifications_active,
-              size: 30, color: Colors.yellow),
           onPressed: () {},
+          icon: const badges.Badge(
+            badgeStyle: badges.BadgeStyle(
+              elevation: 3,
+            ),
+            badgeContent: Text(
+              '0',
+              style: CustomTextStyles.appBarSubText,
+            ),
+            child: Icon(Icons.notifications),
+          ),
         ),
       ],
     );
