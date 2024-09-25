@@ -325,13 +325,14 @@ class OnBordingView extends GetView<OnBordingController> {
                         ),
                       ),
                       Positioned(
-                          top: height * 0.7,
-                          left: width * 0.14,
-                          child: const Text(
-                            'Discover new and',
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
-                          )),
+                        top: height * 0.7,
+                        left: width * 0.19,
+                        child: const Text(
+                          'Discover new and',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       Positioned(
                           top: height * 0.745,
                           left: width * 0.21,
@@ -342,7 +343,7 @@ class OnBordingView extends GetView<OnBordingController> {
                           )),
                       Positioned(
                           top: height * 0.8,
-                          left: width * 0.03,
+                          left: width * 0.1,
                           child: const Text(
                               'Discover lastest fashion trends and styles with trendfy',
                               style: TextStyle(
