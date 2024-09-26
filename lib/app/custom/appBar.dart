@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:iconsax/iconsax.dart';
 import '../components/testStyle/textStyle.dart';
 
 class CustomHeader extends StatelessWidget {
@@ -26,8 +27,7 @@ class CustomHeader extends StatelessWidget {
             CircleAvatar(
               radius: 25,
               backgroundColor: Colors.grey[200],
-              child: const Icon(Icons.person,
-                  size: 30, color: Colors.grey), 
+              child: const Icon(Iconsax.user, size: 30, color: Colors.grey),
             ),
             const SizedBox(width: 10),
             Column(
@@ -50,15 +50,15 @@ class CustomHeader extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {},
-          icon: const badges.Badge(
+          icon: badges.Badge(
             badgeStyle: badges.BadgeStyle(
               elevation: 3,
             ),
             badgeContent: Text(
-              '0',
+              '2',
               style: CustomTextStyles.appBarSubText,
             ),
-            child: Icon(Icons.notifications),
+            child: Icon(Iconsax.notification),
           ),
         ),
       ],

@@ -50,7 +50,7 @@ class CustomTextStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.buttonColor,
   );
-  static const TextStyle bodyboldred13 = TextStyle(
+  static const TextStyle bodyboldred14 = TextStyle(
     fontSize: 14.0,
     fontWeight: FontWeight.bold,
     color: AppColors.buttonColor,
@@ -118,6 +118,11 @@ class CustomTextStyles {
   static const TextStyle appBarSubText = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.w600,
+    color: AppColors.whiteColor,
+  );
+  static const TextStyle appBarSubText14 = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
     color: AppColors.whiteColor,
   );
   static const TextStyle smallcaption = TextStyle(

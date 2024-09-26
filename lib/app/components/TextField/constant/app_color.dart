@@ -8,7 +8,7 @@ class AppColors {
   static const Color backgroundColor = Color(0xFFECECEC);
   static const Color whiteColor = Color(0xFFffffff);
 
-  static const Color hintColor = Color(0x33000000);
+  static const Color hintColor = Colors.grey;
   static const Color dangerColor = Color(0xFFF44336);
   static const Color greenColor = Colors.green;
   static const Color buttonColor = Color(0xFF000000);

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
-
 import 'app_color.dart';
 
 class AppStyles {

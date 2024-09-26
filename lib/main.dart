@@ -1,7 +1,6 @@
 import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'app/routes/app_pages.dart';
 
 void main() {

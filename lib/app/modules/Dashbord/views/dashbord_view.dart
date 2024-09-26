@@ -1,7 +1,9 @@
 import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
 import 'package:eccomerce_app/app/components/testStyle/textStyle.dart';
+import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../../components/TextField/form_text_field.dart';
 import '../../../custom/appBar.dart';
 import '../../../custom/dashbordCard.dart';
@@ -78,19 +80,19 @@ class DashbordView extends GetView<DashbordController> {
                                 ),
                                 child: Row(
                                   children: [
-                                    if (index == 0)
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 5),
-                                        child: Icon(
-                                          Icons.menu,
-                                          color:
-                                              controller.selectedIndex.value ==
-                                                      index
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                          size: 16,
-                                        ),
-                                      ),
+                                    // if (index == 0)
+                                    //   Padding(
+                                    //     padding: EdgeInsets.only(right: 5),
+                                    //     child: Icon(
+                                    //       Icons.menu,
+                                    //       color:
+                                    //           controller.selectedIndex.value ==
+                                    //                   index
+                                    //               ? Colors.white
+                                    //               : Colors.black,
+                                    //       size: 16,
+                                    //     ),
+                                    //   ),
                                     Text(
                                       controller.categories[index],
                                       style: TextStyle(
@@ -118,11 +120,11 @@ class DashbordView extends GetView<DashbordController> {
                   children: [
                     Text(
                       'Most Popular',
-                      style: CustomTextStyles.appBarMainText,
+                      style: CustomTextStyles.bodyTextBold,
                     ),
                     Text(
                       'View all',
-                      style: CustomTextStyles.bodyboldred18,
+                      style: CustomTextStyles.bodyboldred14,
                     ),
                   ],
                 ),
@@ -130,7 +132,7 @@ class DashbordView extends GetView<DashbordController> {
                   height: 10,
                 ),
                 Container(
-                  height: height * 0.36,
+                  height: height * 0.40,
                   width: width,
                   color: Colors.transparent,
                   child: ListView.builder(
@@ -140,16 +142,19 @@ class DashbordView extends GetView<DashbordController> {
                       return CustomCard(
                         imageUrl:
                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
-                        title: "Daily Cream",
-                        rating: "4.5",
-                        reviewsCount: "64",
-                        soldCount: "180 Sold",
-                        price: r'$40.00',
-                        originalPrice: r'$56.00',
-                        backgroundColor: Colors.white,
-                        titleColor: Colors.black,
-                        priceColor: Colors.black,
-                        discountPriceColor: Colors.grey,
+                        rating: "3",
+                        reviewsCount: "7",
+                        soldCount: "100+ sold", // Example count
+                        price: "₹113",
+                        originalPrice: "₹157",
+                        discountPercentage: "28% off",
+                        firstOrderDiscount: "₹94 with 1 Special Offer",
+                        deliveryTime: "Delivery within 1 day",
+                        title: "Denzolee Men's T-Shirt",
+
+                        onFavoritePressed: () {
+                          // Handle favorite press
+                        },
                       );
                     },
                   ),
@@ -162,11 +167,11 @@ class DashbordView extends GetView<DashbordController> {
                   children: [
                     Text(
                       'New Arrival',
-                      style: CustomTextStyles.appBarMainText,
+                      style: CustomTextStyles.bodyTextBold,
                     ),
                     Text(
                       'View all',
-                      style: CustomTextStyles.bodyboldred18,
+                      style: CustomTextStyles.bodyboldred14,
                     ),
                   ],
                 ),
@@ -174,7 +179,7 @@ class DashbordView extends GetView<DashbordController> {
                   height: 10,
                 ),
                 Container(
-                  height: height * 0.36,
+                  height: height * 0.5,
                   width: width,
                   color: Colors.transparent,
                   child: ListView.builder(
@@ -183,17 +188,20 @@ class DashbordView extends GetView<DashbordController> {
                     itemBuilder: (context, index) {
                       return CustomCard(
                         imageUrl:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYsUOmd_J_bVEMz2F5ABmgpWexg8sS7Fu-2w&s",
-                        title: "Blue Finger Ring",
-                        rating: "4.4",
-                        reviewsCount: "64",
-                        soldCount: "300 Sold",
-                        price: r'$40.00',
-                        originalPrice: r'$56.00',
-                        backgroundColor: Colors.white,
-                        titleColor: Colors.black,
-                        priceColor: Colors.black,
-                        discountPriceColor: Colors.grey,
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
+                        rating: "3",
+                        reviewsCount: "7",
+                        soldCount: "100+ sold", // Example count
+                        price: "₹113",
+                        originalPrice: "₹157",
+                        discountPercentage: "28% off",
+                        firstOrderDiscount: "\$94 with 1 Special Offer",
+                        deliveryTime: "Delivery within 1 day",
+                        title: "Denzolee Men's T-Shirt",
+
+                        onFavoritePressed: () {
+                          // Handle favorite press
+                        },
                       );
                     },
                   ),
@@ -227,30 +235,38 @@ class DashbordView extends GetView<DashbordController> {
       child: Row(
         children: [
           Expanded(
-            child: CustomTextFormField(
-              prefix: const Icon(
-                Icons.search,
-                color: AppColors.blackColor,
-                size: 25,
-              ),
-              borderDecoration: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
+            child: GestureDetector(
+              onTap: () {},
+              child: CustomTextFormField(
+                height: 50,
+                prefix: Icon(
+                  Iconsax.search_normal,
                   color: AppColors.blackColor,
-                  width: 1,
+                  size: 25,
                 ),
-              ),
-              labelText: 'Search here...',
-              suffix: const Icon(
-                Icons.mic,
-                color: AppColors.blackColor,
-                size: 25,
+                borderDecoration: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: const BorderSide(
+                    color: AppColors.blackColor,
+                    width: 1,
+                  ),
+                ),
+                hintText: 'Search here...',
+                suffix: Icon(
+                  Iconsax.microphone,
+                  color: AppColors.blackColor,
+                  size: 20,
+                ),
               ),
             ),
           ),
           SizedBox(width: 10),
           GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.SEARCH_PRODUCT);
+            },
             child: Container(
+              height: 48,
               decoration: BoxDecoration(
                 color: AppColors.whiteColor,
                 border: Border.all(),
@@ -258,9 +274,9 @@ class DashbordView extends GetView<DashbordController> {
               ),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 11, horizontal: 14),
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 child: Icon(
-                  Icons.tune,
+                  Iconsax.filter,
                   color: AppColors.blackColor,
                   size: 25,
                 ),

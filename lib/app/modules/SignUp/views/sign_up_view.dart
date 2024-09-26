@@ -102,13 +102,12 @@ class SignUpView extends GetView<SignUpController> {
                           ),
                         ),
                         autofocus: true,
-                        // labelText: 'Mobile Number',
                         hintText: '10 digit mobile number',
                         textInputType: TextInputType.phone,
                         controller: controller.phoneController,
                         validator: (value) {
                           if (!isValidPhone(value)) {
-                            return "Enter a valid 10-digit phone number";
+                            return "Enter a valid  phone number";
                           }
                           return null;
                         },
@@ -197,10 +196,12 @@ class SignUpView extends GetView<SignUpController> {
                       onPressed: controller.isButtonEnabled.value
                           ? () {
                               if (controller.formKey.currentState?.validate() ??
-                                  false) {}
+                                  false) {
+                                Get.toNamed(Routes.BASE);
+                              }
                             }
                           : () {
-                              Get.toNamed(Routes.DASHBORD);
+                              Get.toNamed(Routes.BASE);
                             },
                       color: controller.isButtonEnabled.value
                           ? AppColors.buttonColor

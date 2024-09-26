@@ -7,6 +7,7 @@ import 'constant/input_Style.dart';
 class CustomTextFormField extends StatelessWidget {
   final Alignment? alignment;
   final double? width;
+  final double? height; // Add height property
   final bool? readOnly;
   final EdgeInsetsGeometry? margin;
   final TextEditingController? controller;
@@ -41,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     this.alignment,
     this.width,
+    this.height, // Initialize height
     this.margin,
     this.maxLength,
     this.controller,
@@ -84,11 +86,13 @@ class CustomTextFormField extends StatelessWidget {
   }
 
   Widget get textFormFieldWidget => Container(
+        height: height, // Set height here
         decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(8)),
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
         width: width ?? double.infinity,
-        margin: margin ?? const EdgeInsets.only(top: 5),
+        // margin: margin ?? const EdgeInsets.only(top: 5),
         child: TextFormField(
           textCapitalization:
               textCapitalization ?? TextCapitalization.sentences,
