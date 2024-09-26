@@ -293,7 +293,7 @@ class DashbordView extends GetView<DashbordController> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 child: Icon(
-                  Iconsax.filter,
+                  Iconsax.setting_5,
                   color: AppColors.blackColor,
                   size: 25,
                 ),
