@@ -13,6 +13,7 @@ abstract class Routes {
   static const CART = _Paths.CART;
   static const PROFILE = _Paths.PROFILE;
   static const SEARCH_PRODUCT = _Paths.SEARCH_PRODUCT;
+  static const FILTER_PRODUCT = _Paths.FILTER_PRODUCT;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const CART = '/cart';
   static const PROFILE = '/profile';
   static const SEARCH_PRODUCT = '/search-product';
+  static const FILTER_PRODUCT = '/filter-product';
 }
