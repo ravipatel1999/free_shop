@@ -4,6 +4,7 @@ import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../../components/TextField/constant/input_Style.dart';
 import '../../../components/TextField/form_text_field.dart';
 import '../../../custom/appBar.dart';
 import '../../../custom/dashbordCard.dart';
@@ -162,7 +163,7 @@ class DashbordView extends GetView<DashbordController> {
                 SizedBox(
                   height: 15,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -236,26 +237,42 @@ class DashbordView extends GetView<DashbordController> {
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () {},
-              child: CustomTextFormField(
+              onTap: () {
+                Get.toNamed(Routes.SEARCH_PRODUCT);
+              },
+              child: Container(
                 height: 50,
-                prefix: Icon(
-                  Iconsax.search_normal,
-                  color: AppColors.blackColor,
-                  size: 25,
-                ),
-                borderDecoration: OutlineInputBorder(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
+                  border: Border.all(
                     color: AppColors.blackColor,
                     width: 1,
                   ),
+                  color: AppColors.whiteColor, // Background color
                 ),
-                hintText: 'Search here...',
-                suffix: Icon(
-                  Iconsax.microphone,
-                  color: AppColors.blackColor,
-                  size: 20,
+                child: Row(
+                  children: [
+                    Icon(
+                      Iconsax.search_normal,
+                      color: AppColors.blackColor,
+                      size: 25,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Search here...',
+                        style: AppStyles.inputStyle.copyWith(
+                          color: AppColors.hintColor,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Iconsax.microphone,
+                      color: AppColors.blackColor,
+                      size: 20,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -263,7 +280,7 @@ class DashbordView extends GetView<DashbordController> {
           SizedBox(width: 10),
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.SEARCH_PRODUCT);
+              Get.toNamed(Routes.FILTER_PRODUCT);
             },
             child: Container(
               height: 48,
@@ -276,7 +293,7 @@ class DashbordView extends GetView<DashbordController> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 child: Icon(
-                  Iconsax.filter,
+                  Iconsax.setting_5,
                   color: AppColors.blackColor,
                   size: 25,
                 ),
@@ -287,6 +304,65 @@ class DashbordView extends GetView<DashbordController> {
       ),
     );
   }
+
+  // Widget buildSearchBarSection() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+  //     child: Row(
+  //       children: [
+  //         Expanded(
+  //           child: GestureDetector(
+  //             onTap: () {},
+  //             child: CustomTextFormField(
+  //               height: 50,
+  //               prefix: Icon(
+  //                 Iconsax.search_normal,
+  //                 color: AppColors.blackColor,
+  //                 size: 25,
+  //               ),
+  //               borderDecoration: OutlineInputBorder(
+  //                 borderRadius: BorderRadius.circular(8),
+  //                 borderSide: const BorderSide(
+  //                   color: AppColors.blackColor,
+  //                   width: 1,
+  //                 ),
+  //               ),
+  //               hintText: 'Search here...',
+  //               suffix: Icon(
+  //                 Iconsax.microphone,
+  //                 color: AppColors.blackColor,
+  //                 size: 20,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //         SizedBox(width: 10),
+  //         GestureDetector(
+  //           onTap: () {
+  //             Get.toNamed(Routes.SEARCH_PRODUCT);
+  //           },
+  //           child: Container(
+  //             height: 48,
+  //             decoration: BoxDecoration(
+  //               color: AppColors.whiteColor,
+  //               border: Border.all(),
+  //               borderRadius: BorderRadius.circular(8),
+  //             ),
+  //             child: Padding(
+  //               padding:
+  //                   const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+  //               child: Icon(
+  //                 Iconsax.filter,
+  //                 color: AppColors.blackColor,
+  //                 size: 25,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget buildCarouselSection({required double height, required double width}) {
     return Obx(() {

@@ -6,6 +6,8 @@ import '../modules/Cart/bindings/cart_binding.dart';
 import '../modules/Cart/views/cart_view.dart';
 import '../modules/Dashbord/bindings/dashbord_binding.dart';
 import '../modules/Dashbord/views/dashbord_view.dart';
+import '../modules/FilterProduct/bindings/filter_product_binding.dart';
+import '../modules/FilterProduct/views/filter_product_view.dart';
 import '../modules/Languse/bindings/languse_binding.dart';
 import '../modules/Languse/views/languse_view.dart';
 import '../modules/OnBording/bindings/on_bording_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.SEARCH_PRODUCT,
       page: () => const SearchProductView(),
       binding: SearchProductBinding(),
+    ),
+    GetPage(
+      name: _Paths.FILTER_PRODUCT,
+      page: () => const FilterProductView(),
+      binding: FilterProductBinding(),
     ),
   ];
 }

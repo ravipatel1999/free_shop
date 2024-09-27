@@ -23,13 +23,8 @@ class SearchProductView extends GetView<SearchProductController> {
             children: [
               buildSearchBarSection(),
               const Divider(height: 20),
-              const Text(
-                'Your Recent Searches',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const Text('Your Recent Searches',
+                  style: CustomTextStyles.bodyTextBold),
               const SizedBox(height: 8),
               Obx(() {
                 int itemCount = controller.recentdressNames.length;
@@ -70,13 +65,8 @@ class SearchProductView extends GetView<SearchProductController> {
                 );
               }),
               const SizedBox(height: 16),
-              const Text(
-                'Popular Searches',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const Text('Popular Searches',
+                  style: CustomTextStyles.bodyTextBold),
               const SizedBox(height: 8),
               Obx(() {
                 return Wrap(
@@ -108,17 +98,12 @@ class SearchProductView extends GetView<SearchProductController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Hot deal this week',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text('Hot deal this week',
+                        style: CustomTextStyles.bodyTextBold),
                     Text(
                       'View All',
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue),
                     ),
