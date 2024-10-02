@@ -321,8 +321,8 @@ class DashbordView extends GetView<DashbordController> {
                       height: height * 0.015,
                     ),
                     SizedBox(
-                      width: width * 0.3,
-                      height: carouselHeight * 0.2,
+                      width: width * 0.28,
+                      height: carouselHeight * 0.18,
                       child: CustomButton(
                         text: 'Get Now',
                         textStyle: AppStyles.appBarStyle,
@@ -335,7 +335,8 @@ class DashbordView extends GetView<DashbordController> {
                   height: carouselHeight * 0.975,
                   width: width * 0.32,
                   child: CustomImageView(
-                    url: item.imageUrl,
+                    fit: BoxFit.contain,
+                    imagePath: item.imageUrl,
                   ),
                 )
               ],
