@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../components/TextField/constant/app_color.dart';
-import '../components/testStyle/textStyle.dart';
+import '../components/testStyle/input_Style.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -24,7 +23,7 @@ class CustomButton extends StatelessWidget {
     this.color, // Nullable color to allow default use
     this.padding = EdgeInsets.zero,
     this.borderRadius = const BorderRadius.all(Radius.circular(9)),
-    this.textStyle = CustomTextStyles.appBarText,
+    this.textStyle = AppStyles.btnStyle,
     this.border, // Initialize the border parameter
     this.children = const [], // Default empty list for children
   }) : super(key: key);
@@ -40,7 +39,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: color ??
-              AppColors.buttonColor, // Use default color if color is null
+              AppColors.blackColor, // Use default color if color is null
           minimumSize: Size(width, height),
           padding: padding,
           shape: RoundedRectangleBorder(

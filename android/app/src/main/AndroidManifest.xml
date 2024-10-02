@@ -2,7 +2,7 @@
 <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="eccomerce_app"
+        android:label="Trend Mart"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -122,12 +122,16 @@ class SignUpController extends GetxController {
   }
 
   TextEditingController phoneController = TextEditingController();
+  final otpController = TextEditingController();
+
   String? verificationId;
   FocusNode focusNode = FocusNode();
   var payload = {"mobileno": ""};
   final formKey = GlobalKey<FormState>();
   var isTermsAccepted = false.obs;
   var isButtonEnabled = false.obs;
+  var isOtpSent = false.obs;
+
   @override
   void onClose() {
     phoneController.removeListener(checkButtonState);
@@ -138,6 +142,22 @@ class SignUpController extends GetxController {
   void toggleTermsAcceptance(bool value) {
     isTermsAccepted.value = value;
     checkButtonState();
+  }
+
+  void sendOtp() {
+    if (formKey.currentState?.validate() ?? false) {
+      // Logic to send OTP
+      isOtpSent.value = true;
+      otpController.clear(); // Clear the OTP field before displaying it
+    }
+  }
+
+  void verifyOtp() {
+    if (formKey.currentState?.validate() ?? false) {
+      // Logic to verify OTP
+      Get.toNamed(
+          '/home'); // Navigate to the next page if OTP is verified successfully
+    }
   }
 
   void checkButtonState() {

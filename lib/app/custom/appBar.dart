@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:iconsax/iconsax.dart';
-import '../components/testStyle/textStyle.dart';
+
+import '../components/testStyle/input_Style.dart';
 
 class CustomHeader extends StatelessWidget {
   const CustomHeader({super.key});
@@ -56,7 +57,7 @@ class CustomHeader extends StatelessWidget {
             ),
             badgeContent: Text(
               '2',
-              style: CustomTextStyles.appBarSubText,
+              style: AppStyles.appBarStyle,
             ),
             child: Icon(Iconsax.notification),
           ),

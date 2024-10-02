@@ -1,6 +1,8 @@
 import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
-import 'package:eccomerce_app/app/components/testStyle/textStyle.dart';
+import 'package:eccomerce_app/app/custom/imagecustom.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import '../components/testStyle/input_Style.dart';
 
 class CustomCard extends StatelessWidget {
   final String imageUrl;
@@ -45,150 +47,128 @@ class CustomCard extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    return Container(
-      margin: EdgeInsets.only(left: width * 0.028, right: width * 0.029),
-      height: height,
-      width: width * 0.42,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(9),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              Container(
-                height: height * 0.25,
-                width: width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(imageUrl),
-                  ),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                width: 175,
+                height: 175,
+                child: CustomImageView(
+                  fit: BoxFit.fill,
+                  url: imageUrl,
                 ),
               ),
               Positioned(
                 top: 8,
                 right: 8,
-                child: CircleAvatar(
-                  backgroundColor: AppColors.whiteColor,
-                  child: IconButton(
-                    icon: Icon(
-                      size: 25,
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite ? Colors.red : Colors.grey,
-                    ),
-                    onPressed: onFavoritePressed,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(6.0),
+                    child: Icon(Iconsax.heart),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: height * 0.002),
-          Expanded(
-            child: Container(
-              width: width * 0.448,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: height * 0.005),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: titleColor,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.005),
-                  Row(
-                    children: [
-                      Text(
-                        price,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: priceColor,
-                        ),
-                      ),
-                      SizedBox(width: width * 0.02),
-                      Text(
-                        originalPrice,
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: discountPriceColor,
-                        ),
-                      ),
-                      SizedBox(width: width * 0.01),
-                      Text(discountPercentage, style: CustomTextStyles.caption),
-                    ],
-                  ),
-                  Text(
-                    deliveryTime,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  Text(
-                    firstOrderDiscount,
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      color: Colors.green,
-                    ),
-                  ),
-                  Text("Free Delivery", style: CustomTextStyles.caption),
-                  SizedBox(height: height * 0.005),
-                  Row(
-                    children: [
-                      SizedBox(width: width * 0.005),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.greenColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0,
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                rating,
-                                style: CustomTextStyles.appBarSubText14,
-                              ),
-                              SizedBox(width: width * 0.005),
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: AppColors.whiteColor,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.01,
-                      ),
-                      Text(
-                        '($reviewsCount)',
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12,
-                          color: const Color.fromARGB(255, 103, 103, 103),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: titleColor,
             ),
+          ),
+          SizedBox(height: height * 0.005),
+          Row(
+            children: [
+              Text(
+                price,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: priceColor,
+                ),
+              ),
+              SizedBox(width: width * 0.02),
+              Text(
+                originalPrice,
+                style: TextStyle(
+                  decoration: TextDecoration.lineThrough,
+                  color: discountPriceColor,
+                ),
+              ),
+              SizedBox(width: width * 0.01),
+              Text(discountPercentage, style: AppStyles.captionsText),
+            ],
+          ),
+          Text(
+            deliveryTime,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+              color: Colors.blue,
+            ),
+          ),
+          Text(
+            firstOrderDiscount,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Colors.green,
+            ),
+          ),
+          Text("Free Delivery", style: AppStyles.captionsText),
+          SizedBox(height: height * 0.005),
+          Row(
+            children: [
+              SizedBox(width: width * 0.005),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.greenColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6.0,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        rating,
+                        style: AppStyles.appBarStyle,
+                      ),
+                      SizedBox(width: width * 0.005),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.whiteColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: width * 0.01,
+              ),
+              Text(
+                '($reviewsCount)',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 12,
+                  color: const Color.fromARGB(255, 103, 103, 103),
+                ),
+              ),
+            ],
           ),
         ],
       ),

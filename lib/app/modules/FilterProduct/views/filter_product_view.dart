@@ -1,8 +1,7 @@
 import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
-import 'package:eccomerce_app/app/components/testStyle/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import '../../../components/testStyle/input_Style.dart';
 import '../controllers/filter_product_controller.dart';
 
 class FilterProductView extends GetView<FilterProductController> {
@@ -16,7 +15,7 @@ class FilterProductView extends GetView<FilterProductController> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onPressed: () {},
           )
         ],
@@ -49,17 +48,17 @@ class FilterProductView extends GetView<FilterProductController> {
                         onTap: () {},
                         child: Container(
                           decoration: BoxDecoration(
-                              color: AppColors.buttonColor,
+                              color: AppColors.carbonColor,
                               borderRadius: BorderRadius.circular(5)),
                           child: Center(
                               child: Text(
                             'Apply',
-                            style: CustomTextStyles.appBarSubText14,
+                            style: AppStyles.appBarStyle,
                           )),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
                     Expanded(
@@ -69,12 +68,12 @@ class FilterProductView extends GetView<FilterProductController> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              border: Border.all(),
+                              border: Border.all(color: AppColors.carbonColor),
                               borderRadius: BorderRadius.circular(5)),
                           child: Center(
                               child: Text(
                             'Reset',
-                            style: CustomTextStyles.bodyBoldCard,
+                            style: AppStyles.btnStyle14,
                           )),
                         ),
                       ),
@@ -93,16 +92,16 @@ class FilterProductView extends GetView<FilterProductController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Categories',
-                style: CustomTextStyles.bodyBoldCard,
+                style: AppStyles.btnStyle14,
               ),
-              Text('View All'),
+              const Text('View All'),
             ],
           ),
         ),
@@ -141,16 +140,16 @@ class FilterProductView extends GetView<FilterProductController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Brand',
-                style: CustomTextStyles.bodyBoldCard,
+                style: AppStyles.btnStyle14,
               ),
-              Text('View All'),
+              const Text('View All'),
             ],
           ),
         ),
@@ -178,7 +177,7 @@ class FilterProductView extends GetView<FilterProductController> {
           () => Column(
             children: [
               RangeSlider(
-                activeColor: AppColors.buttonColor,
+                activeColor: AppColors.carbonColor,
                 inactiveColor: const Color(0xFFC7C6C6),
                 values: RangeValues(
                   controller.minPrice.value,
@@ -211,16 +210,16 @@ class FilterProductView extends GetView<FilterProductController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Size',
-                style: CustomTextStyles.bodyBoldCard,
+                style: AppStyles.btnStyle14,
               ),
-              Text('View All'),
+              const Text('View All'),
             ],
           ),
         ),
@@ -249,9 +248,9 @@ class FilterProductView extends GetView<FilterProductController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Color',
-                  style: CustomTextStyles.bodyBoldCard,
+                  style: AppStyles.btnStyle14,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -286,7 +285,7 @@ class FilterProductView extends GetView<FilterProductController> {
       bool isDouble = dynamicValue.value is double;
 
       return ChoiceChip(
-        selectedColor: AppColors.buttonColor,
+        selectedColor: AppColors.carbonColor,
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         side: const BorderSide(color: Colors.transparent),
         label: Text(
