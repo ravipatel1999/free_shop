@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class SearchProductController extends GetxController {
+class Searchcontroller extends GetxController {
   var dressNames = [
     'T-Shirt',
     'Blouse',

@@ -72,12 +72,12 @@ class SignUpView extends GetView<SignUpController> {
                                 Text(
                                   controller.countryCode.value,
                                   style: TextStyle(
-                                    color: Colors.grey[700],
+                                    color: AppColors.hintColor,
                                   ),
                                 ),
                                 Icon(
                                   Icons.arrow_drop_down,
-                                  color: Colors.grey[500],
+                                  color: AppColors.hintColor,
                                 ),
                               ],
                             ),
@@ -92,7 +92,7 @@ class SignUpView extends GetView<SignUpController> {
                           borderDecoration: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(
-                              color: AppColors.blackColor,
+                              color: AppColors.primaryColor,
                               width: 1,
                             ),
                           ),
@@ -125,7 +125,7 @@ class SignUpView extends GetView<SignUpController> {
                       // Obx(
                       //   () =>
                       Checkbox(
-                        activeColor: AppColors.blackColor,
+                        activeColor: AppColors.primaryColor,
                         value: controller.isTermsAccepted.value,
                         onChanged: (bool? value) {
                           // if (value != null) {
@@ -141,14 +141,14 @@ class SignUpView extends GetView<SignUpController> {
                               const TextSpan(
                                 text: 'By going forward, you accept our ',
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: AppColors.primaryColor,
                                   fontSize: 12,
                                 ),
                               ),
                               TextSpan(
                                 text: 'Terms & Conditions',
                                 style: const TextStyle(
-                                  color: Colors.black,
+                                  color: AppColors.primaryColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline,
@@ -159,7 +159,7 @@ class SignUpView extends GetView<SignUpController> {
                               const TextSpan(
                                 text: ' and ',
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: AppColors.primaryColor,
                                   fontSize: 12,
                                 ),
                               ),
@@ -167,7 +167,7 @@ class SignUpView extends GetView<SignUpController> {
                                 text: 'Privacy Policies',
                                 style: const TextStyle(
                                   fontSize: 12,
-                                  color: Colors.black,
+                                  color: AppColors.primaryColor,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline,
                                 ),
@@ -187,7 +187,7 @@ class SignUpView extends GetView<SignUpController> {
                       onPressed: () {
                         Get.toNamed(Routes.BASE);
                       },
-                      color: AppColors.blackColor),
+                      color: AppColors.primaryColor),
                 ],
               ),
             ),

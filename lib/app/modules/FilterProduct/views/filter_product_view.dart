@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../components/testStyle/input_Style.dart';
 import '../controllers/filter_product_controller.dart';
 
-class FilterProductView extends GetView<FilterProductController> {
+class FilterProductView extends GetView<Filtercontroller> {
   const FilterProductView({super.key});
   @override
   Widget build(BuildContext context) {

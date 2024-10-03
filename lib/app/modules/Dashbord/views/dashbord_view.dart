@@ -171,21 +171,26 @@ class DashbordView extends GetView<DashbordController> {
                       children: List.generate(4, (index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CustomCard(
-                        imageUrl:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
-                        rating: "3",
-                        reviewsCount: "7",
-                        soldCount: "100+ sold", // Example count
-                        price: "₹113",
-                        originalPrice: "₹157",
-                        discountPercentage: "28% off",
-                        firstOrderDiscount: "₹94 with 1 Special Offer",
-                        deliveryTime: "Delivery within 1 day",
-                        title: "Denzolee Men's T-Shirt",
-                        onFavoritePressed: () {
-                          // Handle favorite press
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.PRODUCT_DETAILS);
                         },
+                        child: CustomCard(
+                          imageUrl:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
+                          rating: "3",
+                          reviewsCount: "7",
+                          soldCount: "100+ sold", // Example count
+                          price: "₹113",
+                          originalPrice: "₹157",
+                          discountPercentage: "28% off",
+                          firstOrderDiscount: "₹94 with 1 Special Offer",
+                          deliveryTime: "Delivery within 1 day",
+                          title: "Denzolee Men's T-Shirt",
+                          onFavoritePressed: () {
+                            // Handle favorite press
+                          },
+                        ),
                       ),
                     );
                   })),

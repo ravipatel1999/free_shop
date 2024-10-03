@@ -1,13 +1,13 @@
+import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../components/TextField/constant/app_color.dart';
 import '../../../components/TextField/form_text_field.dart';
 import '../../../components/testStyle/input_Style.dart';
-import '../../../custom/dashbordCard.dart';
 import '../controllers/search_product_controller.dart';
 
-class SearchProductView extends GetView<SearchProductController> {
+class SearchProductView extends GetView<Searchcontroller> {
   const SearchProductView({super.key});
 
   @override
@@ -43,7 +43,7 @@ class SearchProductView extends GetView<SearchProductController> {
                           children: [
                             const Icon(
                               Iconsax.clock,
-                              color: AppColors.blackColor,
+                              color: AppColors.primaryColor,
                               size: 18,
                             ),
                             const SizedBox(
@@ -121,157 +121,158 @@ class SearchProductView extends GetView<SearchProductController> {
                         ),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return CustomCard(
-                        imageUrl:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
-                        rating: "3",
-                        reviewsCount: "7",
-                        soldCount: "100+ sold", // Example count
-                        price: "₹113",
-                        originalPrice: "₹157",
-                        discountPercentage: "28% off",
-                        firstOrderDiscount: "₹94 with 1 Special Offer",
-                        deliveryTime: "Delivery within 1 day",
-                        title: "Denzolee Men's T-Shirt",
-                        onFavoritePressed: () {
-                          // Handle favorite press
-                        },
-                      );
+                      return
+                          // CustomCard(
+                          //   imageUrl:
+                          //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
+                          //   rating: "3",
+                          //   reviewsCount: "7",
+                          //   soldCount: "100+ sold", // Example count
+                          //   price: "₹113",
+                          //   originalPrice: "₹157",
+                          //   discountPercentage: "28% off",
+                          //   firstOrderDiscount: "₹94 with 1 Special Offer",
+                          //   deliveryTime: "Delivery within 1 day",
+                          //   title: "Denzolee Men's T-Shirt",
+                          //   onFavoritePressed: () {
+                          //     // Handle favorite press
+                          //   },
+                          // );
 
-                      //  Container(
-                      //   height: 200.0, // Fixed height for each container
-                      //   width: (width - 30) /
-                      //       2, // Width calculated to fit within screen with spacing
-                      //   margin: EdgeInsets.only(
-                      //     top: index < 2
-                      //         ? 10.0
-                      //         : 0.0, // Top margin for the first row
-                      //     left: index % 2 == 0
-                      //         ? 10.0
-                      //         : 0.0, // Left margin for the first column
-                      //     right: index % 2 != 0
-                      //         ? 10.0
-                      //         : 0.0, // Right margin for the second column
-                      //   ),
-                      //   decoration: const BoxDecoration(
-                      //     color: Colors.white,
-                      //     borderRadius: BorderRadius.only(
-                      //         topLeft: Radius.circular(10),
-                      //         topRight: Radius.circular(10)), // Rounded corners
-                      //   ),
-                      //   child: Column(
-                      //     children: [
-                      //       Container(
-                      //         height: height * 0.25,
-                      //         width: width,
-                      //         decoration: BoxDecoration(
-                      //             image: const DecorationImage(
-                      //                 fit: BoxFit.fill,
-                      //                 image: NetworkImage(
-                      //                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_yv_Ouav1k6Y53PJX3PtQvUHovBWIALQ3lQ&s")),
-                      //             color: Colors.transparent,
-                      //             borderRadius: BorderRadius.circular(10)),
-                      //       ),
-                      //       SizedBox(
-                      //         height: height * 0.002,
-                      //       ),
-                      //       Expanded(
-                      //           child: Container(
-                      //         width: width * 0.448,
-                      //         decoration: const BoxDecoration(
-                      //             color: Colors.transparent,
-                      //             borderRadius:
-                      //                 BorderRadius.all(Radius.circular(5))),
-                      //         child: Column(
-                      //           crossAxisAlignment: CrossAxisAlignment.start,
-                      //           children: [
-                      //             SizedBox(
-                      //               height: height * 0.005,
-                      //             ),
-                      //             const Text(
-                      //               "Glidan mens Classic",
-                      //               style: TextStyle(
-                      //                   fontSize: 12,
-                      //                   fontWeight: FontWeight.bold),
-                      //             ),
-                      //             SizedBox(
-                      //               height: height * 0.005,
-                      //             ),
-                      //             Row(
-                      //               children: [
-                      //                 const Icon(
-                      //                   Icons.star,
-                      //                   size: 15,
-                      //                   color: Color.fromARGB(60, 59, 59, 59),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.005,
-                      //                 ),
-                      //                 const Text(
-                      //                   '4.5',
-                      //                   style: TextStyle(
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.005,
-                      //                 ),
-                      //                 const Text(
-                      //                   '(64)',
-                      //                   style: TextStyle(
-                      //                     fontWeight: FontWeight.normal,
-                      //                     color: Color.fromARGB(
-                      //                         255, 103, 103, 103),
-                      //                   ),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.01,
-                      //                 ),
-                      //                 const Icon(
-                      //                   Icons.star,
-                      //                   size: 10,
-                      //                   color: Color.fromARGB(60, 59, 59, 59),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.01,
-                      //                 ),
-                      //                 const Text(
-                      //                   '200 Sold',
-                      //                   style: TextStyle(
-                      //                     fontWeight: FontWeight.normal,
-                      //                     color: Color.fromARGB(
-                      //                         255, 103, 103, 103),
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //             SizedBox(
-                      //               height: height * 0.007,
-                      //             ),
-                      //             Row(
-                      //               children: [
-                      //                 const Text(
-                      //                   r'$120.00', // Dollar sign displayed correctly
-                      //                   style: TextStyle(
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   width: width * 0.02,
-                      //                 ),
-                      //                 const Text(
-                      //                   r'$56.00', // Dollar sign displayed correctly
-                      //                   style: TextStyle(
-                      //                     fontWeight: FontWeight.bold,
-                      //                     color: Color.fromARGB(60, 59, 59, 59),
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             )
-                      //           ],
-                      //         ),
-                      //       ))
-                      //     ],
-                      //   ),
-                      // );
+                          Container(
+                        height: 200.0, // Fixed height for each container
+                        width: (width - 30) /
+                            2, // Width calculated to fit within screen with spacing
+                        margin: EdgeInsets.only(
+                          top: index < 2
+                              ? 10.0
+                              : 0.0, // Top margin for the first row
+                          left: index % 2 == 0
+                              ? 10.0
+                              : 0.0, // Left margin for the first column
+                          right: index % 2 != 0
+                              ? 10.0
+                              : 0.0, // Right margin for the second column
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10)), // Rounded corners
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: height * 0.20,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(
+                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_yv_Ouav1k6Y53PJX3PtQvUHovBWIALQ3lQ&s")),
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                            SizedBox(
+                              height: height * 0.002,
+                            ),
+                            Expanded(
+                                child: Container(
+                              width: width * 0.448,
+                              decoration: const BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.005,
+                                  ),
+                                  const Text(
+                                    "Glidan mens Classic",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.005,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.star,
+                                        size: 15,
+                                        color: Color.fromARGB(60, 59, 59, 59),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.005,
+                                      ),
+                                      const Text(
+                                        '4.5',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.005,
+                                      ),
+                                      const Text(
+                                        '(64)',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: Color.fromARGB(
+                                              255, 103, 103, 103),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      const Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Color.fromARGB(60, 59, 59, 59),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      const Text(
+                                        '200 Sold',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: Color.fromARGB(
+                                              255, 103, 103, 103),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.007,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        r'$120.00', // Dollar sign displayed correctly
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.02,
+                                      ),
+                                      const Text(
+                                        r'$56.00', // Dollar sign displayed correctly
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color.fromARGB(60, 59, 59, 59),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ))
+                          ],
+                        ),
+                      );
                     }),
               ),
             ],
@@ -285,13 +286,12 @@ class SearchProductView extends GetView<SearchProductController> {
     return Row(
       children: [
         IconButton(
-          icon: const CircleAvatar(
+          icon: CircleAvatar(
               radius: 25,
-              backgroundColor: AppColors.blackColor,
+              backgroundColor: AppColors.primaryColor,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
-                child:
-                    Icon(Icons.arrow_back_ios_new, color: AppColors.whiteColor),
+                child: Icon(Iconsax.arrow_left_2, color: AppColors.whiteColor),
               )),
           onPressed: () {
             Get.back();
@@ -303,31 +303,36 @@ class SearchProductView extends GetView<SearchProductController> {
             height: 50,
             prefix: const Icon(
               Iconsax.search_normal,
-              color: AppColors.blackColor,
+              color: AppColors.primaryColor,
               size: 25,
             ),
             borderDecoration: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(
-                color: AppColors.blackColor,
+                color: AppColors.primaryColor,
                 width: 1,
               ),
             ),
             hintText: 'Search here...',
-            suffix: const Row(
+            suffix: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
                   Iconsax.microphone,
-                  color: AppColors.blackColor,
+                  color: AppColors.primaryColor,
                   size: 20,
                 ),
                 SizedBox(width: 15),
-                Icon(
-                  Iconsax.camera,
-                  color: AppColors.blackColor,
-                  size: 20,
+                IconButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.IMAGE_SEARCH);
+                  },
+                  icon: Icon(
+                    Iconsax.camera,
+                    color: AppColors.primaryColor,
+                    size: 20,
+                  ),
                 ),
                 SizedBox(width: 15),
               ],

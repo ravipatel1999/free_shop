@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class FilterProductController extends GetxController {
+class Filtercontroller extends GetxController {
   RxString selectedCategory = 'Women'.obs;
   RxString selectedBrand = 'Adidas'.obs;
   RxDouble minPrice = 80.0.obs;
