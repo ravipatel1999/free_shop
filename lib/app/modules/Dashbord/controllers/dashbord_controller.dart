@@ -5,15 +5,13 @@ class DashbordController extends GetxController {
   var selectedIndex = 0.obs;
   var items = <CarouselItem>[
     CarouselItem(
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/trend-mart.appspot.com/o/Men_Shirts.png?alt=media&token=a9055ef8-d79d-4cdc-a091-331607cfd936',
+      imageUrl: "assets/Men_Shirts.png",
       title: '50% offer',
       subtitle: 'on everything today',
     ),
     CarouselItem(
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/trend-mart.appspot.com/o/Men_Shirts.png?alt=media&token=a9055ef8-d79d-4cdc-a091-331607cfd936',
-      title: '50% offer',
+      imageUrl: 'assets/Men_Shirts.png',
+      title: '80% offer',
       subtitle: 'on everything today',
     ),
   ].obs;

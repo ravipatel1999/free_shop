@@ -40,7 +40,7 @@ class BaseView extends GetView<BaseController> {
           backgroundColor: Colors.white,
           currentIndex: baseController.currentIndex.value,
           onTap: baseController.changeTabIndex,
-          selectedItemColor: AppColors.buttonColor,
+          selectedItemColor: AppColors.blackColor,
           unselectedItemColor: AppColors.hintColor,
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,

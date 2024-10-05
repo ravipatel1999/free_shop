@@ -1,53 +1,40 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-// This functions are responsible to make UI responsive across all the mobile devices.
-
-// ignore: deprecated_member_use
-MediaQueryData mediaQueryData = MediaQueryData.fromView(ui.window);
-
-// These are the Viewport values of your Figma Design.
-// These are used in the code as a reference to create your UI Responsively.
-const num FIGMA_DESIGN_WIDTH = 430;
-const num FIGMA_DESIGN_HEIGHT = 932;
-const num FIGMA_DESIGN_STATUS_BAR = 0;
-
-///This extension is used to set padding/margin (for the top and bottom side) & height of the screen or widget according to the Viewport height.
-extension ResponsiveExtension on num {
-  ///This method is used to get device viewport width.
-  get _width {
-    return mediaQueryData.size.width;
+class ResponsiveHelper {
+  static bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width < 600;
   }
 
-  ///This method is used to get device viewport height.
-  get _height {
-    num statusBar = mediaQueryData.viewPadding.top;
-    num bottomBar = mediaQueryData.viewPadding.bottom;
-    num screenHeight = mediaQueryData.size.height - statusBar - bottomBar;
-    return screenHeight;
+  static bool isTablet(BuildContext context) {
+    return MediaQuery.of(context).size.width >= 600 &&
+        MediaQuery.of(context).size.width < 1024;
   }
 
-  ///This method is used to set padding/margin (for the left and Right side) & width of the screen or widget according to the Viewport width.
-  double get h => ((this * _width) / FIGMA_DESIGN_WIDTH);
-
-  ///This method is used to set padding/margin (for the top and bottom side) & height of the screen or widget according to the Viewport height.
-  double get v =>
-      (this * _height) / (FIGMA_DESIGN_HEIGHT - FIGMA_DESIGN_STATUS_BAR);
-
-  ///This method is used to set smallest px in image height and width
-  double get adaptSize {
-    var height = v;
-    var width = h;
-    return height < width ? height.toDoubleValue() : width.toDoubleValue();
+  static bool isDesktop(BuildContext context) {
+    return MediaQuery.of(context).size.width >= 1024;
   }
 
-  ///This method is used to set text font size according to Viewport
-  double get fSize => adaptSize;
-}
+  static double getHeightFactor(BuildContext context, double mobileFactor,
+      double tabletFactor, double desktopFactor) {
+    if (isDesktop(context)) {
+      return desktopFactor;
+    } else if (isTablet(context)) {
+      return tabletFactor;
+    }
+    return mobileFactor;
+  }
 
-extension FormatExtension on double {
-  /// Return a [double] value with formatted according to provided fractionDigits
-  double toDoubleValue({int fractionDigits = 2}) {
-    return double.parse(this.toStringAsFixed(fractionDigits));
+  static double getFontSize(BuildContext context, double mobileFontSize) {
+    if (isTablet(context)) {
+      return mobileFontSize * 1.5;
+    }
+    return mobileFontSize;
+  }
+
+  static double getContainerSize(BuildContext context, double mobileSize) {
+    if (isTablet(context)) {
+      return mobileSize * 1.5;
+    }
+    return mobileSize;
   }
 }

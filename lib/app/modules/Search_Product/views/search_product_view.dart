@@ -1,12 +1,13 @@
+import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../components/TextField/constant/app_color.dart';
 import '../../../components/TextField/form_text_field.dart';
-import '../../../components/testStyle/textStyle.dart';
+import '../../../components/testStyle/input_Style.dart';
 import '../controllers/search_product_controller.dart';
 
-class SearchProductView extends GetView<SearchProductController> {
+class SearchProductView extends GetView<Searchcontroller> {
   const SearchProductView({super.key});
 
   @override
@@ -23,8 +24,7 @@ class SearchProductView extends GetView<SearchProductController> {
             children: [
               buildSearchBarSection(),
               const Divider(height: 20),
-              const Text('Your Recent Searches',
-                  style: CustomTextStyles.bodyTextBold),
+              Text('Your Recent Searches', style: AppStyles.fontStyleSemiBold),
               const SizedBox(height: 8),
               Obx(() {
                 int itemCount = controller.recentdressNames.length;
@@ -43,7 +43,7 @@ class SearchProductView extends GetView<SearchProductController> {
                           children: [
                             const Icon(
                               Iconsax.clock,
-                              color: AppColors.blackColor,
+                              color: AppColors.primaryColor,
                               size: 18,
                             ),
                             const SizedBox(
@@ -52,7 +52,7 @@ class SearchProductView extends GetView<SearchProductController> {
                             Expanded(
                               child: Text(
                                 controller.recentdressNames[index],
-                                style: CustomTextStyles.bodyBoldCard,
+                                style: AppStyles.btnStyle14,
                                 softWrap: true,
                                 maxLines: 1,
                               ),
@@ -65,8 +65,7 @@ class SearchProductView extends GetView<SearchProductController> {
                 );
               }),
               const SizedBox(height: 16),
-              const Text('Popular Searches',
-                  style: CustomTextStyles.bodyTextBold),
+              Text('Popular Searches', style: AppStyles.fontStyleSemiBold),
               const SizedBox(height: 8),
               Obx(() {
                 return Wrap(
@@ -80,7 +79,7 @@ class SearchProductView extends GetView<SearchProductController> {
                           const VisualDensity(vertical: -4, horizontal: -4),
                       label: Text(
                         controller.dressNames[index],
-                        style: CustomTextStyles.caption,
+                        style: AppStyles.captionsText,
                       ),
                       backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                       shape: RoundedRectangleBorder(
@@ -93,14 +92,14 @@ class SearchProductView extends GetView<SearchProductController> {
                 );
               }),
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Hot deal this week',
-                        style: CustomTextStyles.bodyTextBold),
-                    Text(
+                        style: AppStyles.fontStyleSemiBold),
+                    const Text(
                       'View All',
                       style: TextStyle(
                           fontSize: 14,
@@ -120,10 +119,27 @@ class SearchProductView extends GetView<SearchProductController> {
                         mainAxisExtent:
                             height * 0.37 // Vertical spacing between items
                         ),
-                    itemCount:
-                        10, // Total number of items (2 columns * 5 rows = 10 items)
+                    itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
+                      return
+                          // CustomCard(
+                          //   imageUrl:
+                          //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
+                          //   rating: "3",
+                          //   reviewsCount: "7",
+                          //   soldCount: "100+ sold", // Example count
+                          //   price: "₹113",
+                          //   originalPrice: "₹157",
+                          //   discountPercentage: "28% off",
+                          //   firstOrderDiscount: "₹94 with 1 Special Offer",
+                          //   deliveryTime: "Delivery within 1 day",
+                          //   title: "Denzolee Men's T-Shirt",
+                          //   onFavoritePressed: () {
+                          //     // Handle favorite press
+                          //   },
+                          // );
+
+                          Container(
                         height: 200.0, // Fixed height for each container
                         width: (width - 30) /
                             2, // Width calculated to fit within screen with spacing
@@ -147,7 +163,7 @@ class SearchProductView extends GetView<SearchProductController> {
                         child: Column(
                           children: [
                             Container(
-                              height: height * 0.25,
+                              height: height * 0.20,
                               width: width,
                               decoration: BoxDecoration(
                                   image: const DecorationImage(
@@ -270,13 +286,12 @@ class SearchProductView extends GetView<SearchProductController> {
     return Row(
       children: [
         IconButton(
-          icon: const CircleAvatar(
+          icon: CircleAvatar(
               radius: 25,
-              backgroundColor: AppColors.buttonColor,
+              backgroundColor: AppColors.primaryColor,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
-                child:
-                    Icon(Icons.arrow_back_ios_new, color: AppColors.whiteColor),
+                child: Icon(Iconsax.arrow_left_2, color: AppColors.whiteColor),
               )),
           onPressed: () {
             Get.back();
@@ -288,31 +303,36 @@ class SearchProductView extends GetView<SearchProductController> {
             height: 50,
             prefix: const Icon(
               Iconsax.search_normal,
-              color: AppColors.blackColor,
+              color: AppColors.primaryColor,
               size: 25,
             ),
             borderDecoration: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(
-                color: AppColors.blackColor,
+                color: AppColors.primaryColor,
                 width: 1,
               ),
             ),
             hintText: 'Search here...',
-            suffix: const Row(
+            suffix: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
                   Iconsax.microphone,
-                  color: AppColors.blackColor,
+                  color: AppColors.primaryColor,
                   size: 20,
                 ),
                 SizedBox(width: 15),
-                Icon(
-                  Iconsax.camera,
-                  color: AppColors.blackColor,
-                  size: 20,
+                IconButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.IMAGE_SEARCH);
+                  },
+                  icon: Icon(
+                    Iconsax.camera,
+                    color: AppColors.primaryColor,
+                    size: 20,
+                  ),
                 ),
                 SizedBox(width: 15),
               ],
