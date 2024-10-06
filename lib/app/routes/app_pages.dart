@@ -96,7 +96,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SHORT_FILTER,
-      page: () => const ShortFilterView(),
+      page: () => ShortFilterView(),
       binding: ShortFilterBinding(),
     ),
     GetPage(

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShortFilterController extends GetxController {
+class ShortFilterController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   var selectedSize = 'M'.obs;
   var selectedColor = Colors.black.obs;
   final count = 0.obs;
-
+  late TabController tabController;
+  final int tabCount = 5;
   var products = <Product>[
     Product(
       name: "Gildan mens Classic",
       price: 120.0,
       oldPrice: 140.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -19,7 +21,7 @@ class ShortFilterController extends GetxController {
       name: "Popfunk Classic",
       price: 150.0,
       oldPrice: 169.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -27,7 +29,7 @@ class ShortFilterController extends GetxController {
       name: "Cult T-shirts",
       price: 100.0,
       oldPrice: 116.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -35,7 +37,7 @@ class ShortFilterController extends GetxController {
       name: "Patchwork T-Shirt Quilts",
       price: 100.0,
       oldPrice: 120.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -43,7 +45,7 @@ class ShortFilterController extends GetxController {
       name: "Patchwork T-Shirt Quilts",
       price: 100.0,
       oldPrice: 120.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -51,7 +53,7 @@ class ShortFilterController extends GetxController {
       name: "Patchwork T-Shirt Quilts",
       price: 100.0,
       oldPrice: 120.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
@@ -59,13 +61,15 @@ class ShortFilterController extends GetxController {
       name: "Patchwork T-Shirt Quilts",
       price: 100.0,
       oldPrice: 120.0,
-      imageUrl: "assets/baseimages/signup1.png",
+      imageUrl: "assets/Men_Shirts.png",
       rating: 4.5,
       sold: 200,
     ),
   ].obs;
   @override
   void onInit() {
+    tabController = TabController(length: tabCount, vsync: this);
+
     super.onInit();
   }
 
@@ -76,6 +80,7 @@ class ShortFilterController extends GetxController {
 
   @override
   void onClose() {
+    tabController.dispose();
     super.onClose();
   }
 

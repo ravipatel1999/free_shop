@@ -39,25 +39,30 @@ class SearchProductView extends GetView<Searchcontroller> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Iconsax.clock,
-                              color: AppColors.primaryColor,
-                              size: 18,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Text(
-                                controller.recentdressNames[index],
-                                style: AppStyles.btnStyle14,
-                                softWrap: true,
-                                maxLines: 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.SHORT_FILTER);
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Iconsax.clock,
+                                color: AppColors.primaryColor,
+                                size: 18,
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  controller.recentdressNames[index],
+                                  style: AppStyles.btnStyle14,
+                                  softWrap: true,
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
