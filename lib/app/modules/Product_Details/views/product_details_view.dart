@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/product_details_controller.dart';
 
 class ProductDetailsView extends GetView<ProductDetailsController> {
@@ -520,12 +521,17 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               itemCount: controller.reviews.length,
               itemBuilder: (context, index) {
                 final review = controller.reviews[index];
-                return _reviewCard(
-                  review['userName'] as String,
-                  review['userImage'] as String,
-                  review['rating'] as int,
-                  review['reviewText'] as String,
-                  List<String>.from(review['reviewImages'] as List),
+                return GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.RATING_REVIEW);
+                  },
+                  child: _reviewCard(
+                    review['userName'] as String,
+                    review['userImage'] as String,
+                    review['rating'] as int,
+                    review['reviewText'] as String,
+                    List<String>.from(review['reviewImages'] as List),
+                  ),
                 );
               },
             )),

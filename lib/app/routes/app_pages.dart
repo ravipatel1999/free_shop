@@ -18,6 +18,8 @@ import '../modules/Product_Details/bindings/product_details_binding.dart';
 import '../modules/Product_Details/views/product_details_view.dart';
 import '../modules/Profile/bindings/profile_binding.dart';
 import '../modules/Profile/views/profile_view.dart';
+import '../modules/Rating_Review/bindings/rating_review_binding.dart';
+import '../modules/Rating_Review/views/rating_review_view.dart';
 import '../modules/Search_Product/bindings/search_product_binding.dart';
 import '../modules/Search_Product/views/search_product_view.dart';
 import '../modules/Short_filter/bindings/short_filter_binding.dart';
@@ -106,6 +108,11 @@ class AppPages {
       name: _Paths.PRODUCT_DETAILS,
       page: () => ProductDetailsView(),
       binding: ProductDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.RATING_REVIEW,
+      page: () => const RatingReviewView(),
+      binding: RatingReviewBinding(),
     ),
   ];
 }

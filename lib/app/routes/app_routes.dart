@@ -17,6 +17,7 @@ abstract class Routes {
   static const SHORT_FILTER = _Paths.SHORT_FILTER;
   static const IMAGE_SEARCH = _Paths.IMAGE_SEARCH;
   static const PRODUCT_DETAILS = _Paths.PRODUCT_DETAILS;
+  static const RATING_REVIEW = _Paths.RATING_REVIEW;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const SHORT_FILTER = '/short-filter';
   static const IMAGE_SEARCH = '/image-search';
   static const PRODUCT_DETAILS = '/product-details';
+  static const RATING_REVIEW = '/rating-review';
 }
