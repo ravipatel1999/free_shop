@@ -18,7 +18,7 @@ class AppStyles {
   static const TextStyle headerStyle = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold,
-    color: AppColors.blackColor,
+    color: AppColors.carbonColor,
   );
 
   static const TextStyle loginMsgStyle = TextStyle(

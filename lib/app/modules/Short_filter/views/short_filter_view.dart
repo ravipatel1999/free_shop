@@ -126,7 +126,7 @@ class ShortFilterView extends GetView<ShortFilterController> {
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 0.7,
+          childAspectRatio: 0.6,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
@@ -150,10 +150,13 @@ class ShortFilterView extends GetView<ShortFilterController> {
                 decoration: BoxDecoration(
                     color: const Color(0xFFEBEBEB),
                     borderRadius: BorderRadius.circular(14)),
-                child: Image.asset(
-                  product.imageUrl,
-                  fit: BoxFit.contain,
-                  width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Image.asset(
+                    product.imageUrl,
+                    fit: BoxFit.contain,
+                    width: double.infinity,
+                  ),
                 ),
               ),
             ),
@@ -213,7 +216,7 @@ class ShortFilterView extends GetView<ShortFilterController> {
               icon: const Icon(
                 Iconsax.heart,
                 color: AppColors.hintColor,
-                size: 24,
+                size: 15,
               ),
               onPressed: () {},
             ),
@@ -240,7 +243,7 @@ class ShortFilterView extends GetView<ShortFilterController> {
         ),
         Expanded(
           child: CustomTextFormField(
-            autofocus: true,
+            autofocus: false,
             height: 50,
             prefix: const Icon(
               Iconsax.search_normal,

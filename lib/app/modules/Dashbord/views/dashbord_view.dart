@@ -19,7 +19,8 @@ class DashbordView extends GetView<DashbordController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
+    final double itemWidth = (MediaQuery.of(context).size.width / 2) - 16;
+    final double itemHeight = MediaQuery.of(context).size.height * 0.45;
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
@@ -31,7 +32,7 @@ class DashbordView extends GetView<DashbordController> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,52 +106,170 @@ class DashbordView extends GetView<DashbordController> {
                 const SizedBox(
                   height: 25,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Most Popular',
-                      style: AppStyles.fontStyleSemiBold,
-                    ),
-                    Text(
-                      'View all',
-                      style: AppStyles.btnStyle2,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(4, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.PRODUCT_DETAILS);
-                          },
-                          child: CustomCard(
-                            imageUrl:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
-                            rating: "3",
-                            reviewsCount: "7",
-                            soldCount: "100+ sold",
-                            price: "₹113",
-                            originalPrice: "₹157",
-                            discountPercentage: "28% off",
-                            firstOrderDiscount: "₹94 with 1 Special Offer",
-                            deliveryTime: "Delivery within 1 day",
-                            title: "Denzolee Men's T-Shirt",
-                            onFavoritePressed: () {},
-                          ),
-                        ),
-                      );
-                    }),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Most Popular',
+                        style: AppStyles.fontStyleSemiBold,
+                      ),
+                      Text(
+                        'View all',
+                        style: AppStyles.btnStyle2,
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.PRODUCT_DETAILS);
+                  },
+                  child: SizedBox(
+                    height: itemHeight,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: itemWidth,
+                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: const Color(0xFFF6F5F5),
+                                    ),
+                                    height: itemHeight * 0.55,
+                                    width: double.infinity,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: CustomImageView(
+                                        imagePath: 'assets/Men_Shirts.png',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 1.0,
+                                    right: 1.0,
+                                    child: IconButton(
+                                      icon: CircleAvatar(
+                                        backgroundColor: AppColors.whiteColor,
+                                        child: Icon(
+                                          Iconsax.heart,
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                "Denzolee Men's T-Shirt",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.buttonColor,
+                                ),
+                              ),
+                              SizedBox(height: height * 0.002),
+                              Row(
+                                children: [
+                                  Text(
+                                    "₹157",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.buttonColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.02),
+                                  Text(
+                                    '₹113',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      color: AppColors.hintColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text('28% off',
+                                      style: AppStyles.captionsText),
+                                ],
+                              ),
+                              Text(
+                                "Delivery within 1 day",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              Text(
+                                "₹94 with 1 Special Offer",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              Text("Free Delivery",
+                                  style: AppStyles.captionsText),
+                              SizedBox(height: height * 0.005),
+                              Row(
+                                children: [
+                                  SizedBox(width: width * 0.005),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.greenColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6.0),
+                                      child: Row(
+                                        children: [
+                                          Text('3',
+                                              style: AppStyles.appBarStyle),
+                                          SizedBox(width: width * 0.005),
+                                          Icon(
+                                            Icons.star,
+                                            size: 15,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    '(7)',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                      color: const Color.fromARGB(
+                                          255, 103, 103, 103),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
                   height: 15,
                 ),
                 const Row(
@@ -169,37 +288,154 @@ class DashbordView extends GetView<DashbordController> {
                 const SizedBox(
                   height: 10,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: List.generate(4, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.PRODUCT_DETAILS);
-                        },
-                        child: CustomCard(
-                          imageUrl:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXPgBbHSc5UoT5tu2RbADX5N8jfy4vjLdQmA&s",
-                          rating: "3",
-                          reviewsCount: "7",
-                          soldCount: "100+ sold", // Example count
-                          price: "₹113",
-                          originalPrice: "₹157",
-                          discountPercentage: "28% off",
-                          firstOrderDiscount: "₹94 with 1 Special Offer",
-                          deliveryTime: "Delivery within 1 day",
-                          title: "Denzolee Men's T-Shirt",
-                          onFavoritePressed: () {
-                            // Handle favorite press
-                          },
-                        ),
-                      ),
-                    );
-                  })),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.PRODUCT_DETAILS);
+                  },
+                  child: SizedBox(
+                    height: itemHeight,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: itemWidth,
+                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: const Color(0xFFF6F5F5),
+                                    ),
+                                    height: itemHeight * 0.55,
+                                    width: double.infinity,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: CustomImageView(
+                                        imagePath: 'assets/sharess.png',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 1.0,
+                                    right: 1.0,
+                                    child: IconButton(
+                                      icon: CircleAvatar(
+                                        backgroundColor: AppColors.whiteColor,
+                                        child: Icon(
+                                          Iconsax.heart,
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                "Denzolee Men's T-Shirt",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.buttonColor,
+                                ),
+                              ),
+                              SizedBox(height: height * 0.005),
+                              Row(
+                                children: [
+                                  Text(
+                                    "₹157",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.buttonColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.02),
+                                  Text(
+                                    '₹113',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      color: AppColors.hintColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text('28% off',
+                                      style: AppStyles.captionsText),
+                                ],
+                              ),
+                              Text(
+                                "Delivery within 1 day",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              Text(
+                                "₹94 with 1 Special Offer",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              Text("Free Delivery",
+                                  style: AppStyles.captionsText),
+                              SizedBox(height: height * 0.005),
+                              Row(
+                                children: [
+                                  SizedBox(width: width * 0.005),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.greenColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6.0),
+                                      child: Row(
+                                        children: [
+                                          Text('3',
+                                              style: AppStyles.appBarStyle),
+                                          SizedBox(width: width * 0.005),
+                                          Icon(
+                                            Icons.star,
+                                            size: 15,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    '(7)',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                      color: const Color.fromARGB(
+                                          255, 103, 103, 103),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
-                const Padding(padding: EdgeInsets.all(15))
+                const Padding(padding: EdgeInsets.all(15)),
               ],
             ),
           ),

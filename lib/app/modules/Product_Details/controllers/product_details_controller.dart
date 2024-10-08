@@ -109,7 +109,20 @@ class ProductDetailsController extends GetxController {
         'assets/Men_Shirts.png',
       ]
     }
-  ].obs; // observable list
+  ].obs;
+
+  var quantity = 1.obs;
+
+  void increment() {
+    quantity++;
+  }
+
+  void decrement() {
+    if (quantity > 1) {
+      quantity--;
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -124,8 +137,6 @@ class ProductDetailsController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
 
 class Product {

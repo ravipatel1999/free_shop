@@ -50,19 +50,24 @@ class CustomCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(9),
       child: SizedBox(
-        width: width * 0.42,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
-                SizedBox(
-                  width: 175,
-                  height: 175,
-                  child: CustomImageView(
-                    fit: BoxFit.fill,
-                    url: imageUrl,
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFEBEBEB),
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomImageView(
+                      // height: 200,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                      imagePath: imageUrl,
+                    ),
                   ),
                 ),
                 Positioned(

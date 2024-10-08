@@ -58,8 +58,8 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                     width: 0.5, color: AppColors.primaryColor)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Icon(
                                 Iconsax.heart,
                                 size: 15,
@@ -68,7 +68,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       ],
                     ),
                     const SizedBox(height: 4.0),
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.star, color: AppColors.hintColor, size: 16),
                         SizedBox(width: 4),
@@ -95,14 +95,14 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       ],
                     ),
                     const SizedBox(height: 16.0),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Available Vouchers',
                           style: AppStyles.fontStyleSemiBold,
                         ),
-                        const Text(
+                        Text(
                           'View All',
                           style: AppStyles.btnStyle14,
                         ),
@@ -185,7 +185,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                 color: color,
                               ),
                               child: isSelected
-                                  ? Center(
+                                  ? const Center(
                                       child: Icon(
                                         Icons.check,
                                         color: Colors.white,
@@ -222,13 +222,13 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                   ],
                 ),
               ),
-              Padding(padding: EdgeInsets.only(bottom: 100))
+              const Padding(padding: EdgeInsets.only(bottom: 100))
             ],
           ),
         ),
       ),
       bottomSheet: Container(
-        decoration: BoxDecoration(color: AppColors.whiteColor),
+        decoration: const BoxDecoration(color: AppColors.whiteColor),
         height: 50,
         child: Padding(
           padding: const EdgeInsets.all(4.0),
@@ -243,7 +243,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColors.carbonColor),
                           borderRadius: BorderRadius.circular(5)),
-                      child: Icon(Iconsax.message)),
+                      child: const Icon(Iconsax.message)),
                 ),
               ),
               const SizedBox(
@@ -257,7 +257,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                     decoration: BoxDecoration(
                         color: AppColors.carbonColor,
                         borderRadius: BorderRadius.circular(5)),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       'Buy Now',
                       style: AppStyles.appBarStyle,
@@ -271,12 +271,22 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               Expanded(
                 flex: 4,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.bottomSheet(
+                      _buildBottomSheet(controller),
+                      isScrollControlled: true,
+                      backgroundColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20)),
+                      ),
+                    );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: AppColors.carbonColor),
                         borderRadius: BorderRadius.circular(5)),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       'Add to Cart',
                       style: AppStyles.btnStyle14,
@@ -323,7 +333,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
 
             return Dialog(
               child: Container(
-                decoration: BoxDecoration(color: AppColors.whiteColor),
+                decoration: const BoxDecoration(color: AppColors.whiteColor),
                 height: dialogHeight,
                 child: Stack(
                   children: [
@@ -353,7 +363,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             shape: BoxShape.circle,
                             border: Border.all(color: AppColors.primaryColor)),
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close,
                             size: 20,
                             color: AppColors.primaryColor,
@@ -368,7 +378,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       left: 16,
                       top: dialogHeight / 2 - 24,
                       child: IconButton(
-                        icon: Icon(Iconsax.arrow_square_left,
+                        icon: const Icon(Iconsax.arrow_square_left,
                             size: 30, color: AppColors.primaryColor),
                         onPressed: () {
                           setState(() {
@@ -376,7 +386,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                               currentIndex--;
                               pageController.animateToPage(
                                 currentIndex,
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.easeInOut,
                               );
                             }
@@ -388,7 +398,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       right: 16,
                       top: dialogHeight / 2 - 24,
                       child: IconButton(
-                        icon: Icon(Iconsax.arrow_right,
+                        icon: const Icon(Iconsax.arrow_right,
                             size: 30, color: AppColors.primaryColor),
                         onPressed: () {
                           setState(() {
@@ -397,7 +407,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                               currentIndex++;
                               pageController.animateToPage(
                                 currentIndex,
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 curve: Curves.easeInOut,
                               );
                             }
@@ -425,25 +435,25 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
       ),
       child: Row(
         children: [
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
+                  const Icon(
                     Iconsax.discount_shape,
                     size: 25,
                     color: AppColors.primaryColor,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(text, style: AppStyles.inputFloatingStyle),
                 ],
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 'Min spend \$150  •  Valid til 12/12/2024',
                 style: TextStyle(
@@ -464,7 +474,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
       child: Row(
         children: [
           Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text('  :  '),
+          const Text('  :  '),
           Text(value),
         ],
       ),
@@ -542,7 +552,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
   Widget _reviewCard(String userName, String userImage, int rating,
       String reviewText, List<String> reviewImages) {
     return Container(
-      margin: EdgeInsets.all(2),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.hintColor),
           borderRadius: BorderRadius.circular(9)),
@@ -564,7 +574,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                   children: [
                     Text(userName,
                         style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text('2 days ago'),
+                    const Text('2 days ago'),
                   ],
                 ),
               ],
@@ -581,7 +591,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                     );
                   }),
                 ),
-                Text('  3 stars')
+                const Text('  3 stars')
               ],
             ),
             const SizedBox(height: 8.0),
@@ -620,9 +630,267 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
       decoration: BoxDecoration(
         color: isActive ? Colors.black : Colors.grey,
         shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(
-            4), // Smooth the corners for the rectangular dot
+        borderRadius: BorderRadius.circular(4),
         border: Border.all(color: Colors.black),
+      ),
+    );
+  }
+
+  Widget _buildBottomSheet(ProductDetailsController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Container(
+              height: 4,
+              width: 40,
+              color: Colors.grey[300],
+            ),
+          ),
+          const SizedBox(height: 15),
+          const Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Choose Product Variant',
+              style: AppStyles.headerStyle,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Divider(
+            color: Colors.grey,
+            thickness: 0.2,
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFF6F5F5),
+                        borderRadius: BorderRadius.circular(9)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomImageView(
+                        imagePath: 'assets/sharess.png',
+                        height: 100,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Gildan mens Classic',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      const Text('Stock: 160'),
+                      const Row(
+                        children: [
+                          Text(
+                            '\$120.00',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            '\$140.00',
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Obx(() {
+                        return Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFF6F5F5),
+                              border:
+                                  Border.all(width: 0.2, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 2),
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                    onTap: () {
+                                      controller.decrement();
+                                    },
+                                    child: const Icon(Icons.remove)),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0,
+                                  ),
+                                  child: Text('${controller.quantity}'),
+                                ),
+                                GestureDetector(
+                                    onTap: () {
+                                      controller.increment();
+                                    },
+                                    child: const Icon(Icons.add)),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Text('Size'),
+          const SizedBox(height: 8),
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: ['XXS', 'XS', 'S', 'M', 'L', 'XL']
+                  .map((size) => GestureDetector(
+                        onTap: () => controller.selectedSize.value = size,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                          decoration: BoxDecoration(
+                            color: controller.selectedSize.value == size
+                                ? Colors.black
+                                : Colors.white,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Text(
+                            size,
+                            style: TextStyle(
+                              color: controller.selectedSize.value == size
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text('Color'),
+          const SizedBox(height: 8),
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Colors.black,
+                Colors.yellow,
+                Colors.red,
+                Colors.pink,
+                Colors.blue,
+                Colors.purple,
+              ].map((color) {
+                bool isSelected = controller.selectedColor.value == color;
+                return GestureDetector(
+                  onTap: () => controller.selectedColor.value = color,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                    height: 32,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: color,
+                    ),
+                    child: isSelected
+                        ? const Center(
+                            child: Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          )
+                        : null,
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            decoration: const BoxDecoration(color: AppColors.whiteColor),
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.carbonColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: const Center(
+                            child: Text(
+                          'Buy Now',
+                          style: AppStyles.appBarStyle,
+                        )),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.carbonColor),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: const Center(
+                            child: Text(
+                          'Add to Cart',
+                          style: AppStyles.btnStyle14,
+                        )),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSizeOption(String size) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(size),
+    );
+  }
+
+  Widget _buildColorOption(Color color) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      height: 40,
+      width: 40,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
       ),
     );
   }
