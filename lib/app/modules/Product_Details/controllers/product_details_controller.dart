@@ -7,10 +7,11 @@ class ProductDetailsController extends GetxController {
   var selectedSize = 'M'.obs;
   var selectedColor = Colors.black.obs;
   final count = 0.obs;
+  RxInt currentPage = 0.obs;
   var imagePaths = <String>[
     'assets/Men_Shirts.png',
-    'assets/Men_Shirts.png',
-    'assets/Men_Shirts.png',
+    'assets/sharess.png',
+    'assets/red_remove_bg.png',
   ].obs;
 
   var vouchers = <String>[

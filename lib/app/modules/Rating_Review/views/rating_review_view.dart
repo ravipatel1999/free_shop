@@ -96,30 +96,45 @@ class RatingReviewView extends GetView<RatingReviewController> {
     return Container(
       margin: EdgeInsets.all(2),
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.hintColor),
-          borderRadius: BorderRadius.circular(9)),
+          border: Border.all(color: const Color.fromARGB(255, 218, 217, 217)),
+          borderRadius: BorderRadius.circular(15)),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
         child: Column(
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 232, 232, 232),
-                  child: CustomImageView(
-                    imagePath: 'assets/Men_Shirts.png',
+            ListTile(
+              contentPadding: EdgeInsets.all(-4),
+              leading: CircleAvatar(
+                backgroundColor: const Color.fromARGB(255, 232, 232, 232),
+                child: CustomImageView(
+                  imagePath: 'assets/Men_Shirts.png',
+                ),
+              ),
+              title: Text(userName,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              subtitle: Text('2 days ago'),
+              trailing: PopupMenuButton<String>(
+                color: AppColors.whiteColor,
+                onSelected: (value) {
+                  if (value == 'report') {
+                    print('Report clicked');
+                  } else if (value == 'about') {
+                    print('About clicked');
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'report',
+                    child: Text('Report'),
                   ),
-                ),
-                const SizedBox(width: 8.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(userName,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text('2 days ago'),
-                  ],
-                ),
-              ],
+                  PopupMenuItem(
+                    value: 'about',
+                    child: Text('About'),
+                  ),
+                ],
+                icon: Icon(Icons.more_vert),
+                offset: Offset(0, 40),
+              ),
             ),
             const SizedBox(height: 4.0),
             Row(
@@ -149,10 +164,14 @@ class RatingReviewView extends GetView<RatingReviewController> {
               ),
               itemCount: reviewImages.length,
               itemBuilder: (context, index) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 240, 240, 240),
+                    borderRadius: BorderRadius.circular(9),
+                  ),
                   child: CustomImageView(
                     imagePath: reviewImages[index],
+                    fit: BoxFit.contain,
                   ),
                 );
               },

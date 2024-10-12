@@ -148,7 +148,7 @@ class ShortFilterView extends GetView<ShortFilterController> {
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                    color: const Color(0xFFEBEBEB),
+                    color: const Color(0xFFF5F5F5),
                     borderRadius: BorderRadius.circular(14)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),

@@ -1,13 +1,10 @@
-import 'dart:ui';
-
 import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
 import 'package:eccomerce_app/app/components/testStyle/input_Style.dart';
 import 'package:eccomerce_app/app/custom/imagecustom.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../routes/app_pages.dart';
 import '../controllers/product_details_controller.dart';
 
@@ -39,7 +36,14 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
             children: [
               _imageGallery(context),
               const SizedBox(height: 16.0),
-              Align(alignment: Alignment.topCenter, child: _buildDot(true)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  controller.imagePaths.length,
+                  (index) => Obx(
+                      () => _buildDot(index == controller.currentPage.value)),
+                ),
+              ),
               const SizedBox(height: 16.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -306,6 +310,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
       height: 250,
       child: PageView.builder(
         itemCount: controller.imagePaths.length,
+        onPageChanged: (int index) {
+          controller.currentPage.value = index;
+        },
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => _showImageDialog(context, index),
@@ -490,11 +497,78 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
         const Text('Rating & Reviews',
             style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8.0),
+        // Row(
+        //   children: [
+        //     const Text(
+        //       '4.8',
+        //       style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        //     ),
+        //     const SizedBox(width: 8.0),
+        //     Expanded(
+        //       child: Column(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         children: List.generate(5, (index) {
+        //           return Row(
+        //             children: [
+        //               const Icon(Icons.star,
+        //                   color: AppColors.hintColor, size: 16),
+        //               const SizedBox(width: 4.0),
+        //               Text('${5 - index}'),
+        //               const SizedBox(width: 4.0),
+        //               Expanded(
+        //                 child: LinearProgressIndicator(
+        //                   value: reviewRatings[index],
+        //                   minHeight: 4.0,
+        //                   backgroundColor: Colors.grey[300],
+        //                 ),
+        //               ),
+        //               const SizedBox(width: 8.0),
+        //               Text('${(reviewRatings[index] * 100).toInt()}%'),
+        //             ],
+        //           );
+        //         }),
+        //       ),
+        //     ),
+        //   ],
+        // ),
         Row(
           children: [
-            const Text(
-              '4.8',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    '4.8',
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
+                  RatingBar.builder(
+                    initialRating: 4.8,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemSize: 24.0,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: AppColors.hintColor,
+                    ),
+                    onRatingUpdate: (rating) {},
+                    ignoreGestures: true, // To make it read-only
+                  ),
+                  const SizedBox(height: 4.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.star, color: AppColors.hintColor, size: 16),
+                      const SizedBox(width: 4),
+                      Text('4.5 (64) * 200 Sold'),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 8.0),
             Expanded(
@@ -525,7 +599,10 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
           ],
         ),
         const SizedBox(height: 16.0),
-        Obx(() => ListView.builder(
+        Obx(() => ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(
+                height: 10,
+              ),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.reviews.length,
@@ -554,32 +631,46 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
     return Container(
       margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.hintColor),
-          borderRadius: BorderRadius.circular(9)),
+          border: Border.all(color: const Color.fromARGB(255, 218, 217, 217)),
+          borderRadius: BorderRadius.circular(15)),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
         child: Column(
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 232, 232, 232),
-                  child: CustomImageView(
-                    imagePath: 'assets/Men_Shirts.png',
+            ListTile(
+              contentPadding: EdgeInsets.all(-4),
+              leading: CircleAvatar(
+                backgroundColor: const Color.fromARGB(255, 232, 232, 232),
+                child: CustomImageView(
+                  imagePath: 'assets/Men_Shirts.png',
+                ),
+              ),
+              title: Text(userName,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              subtitle: Text('2 days ago'),
+              trailing: PopupMenuButton<String>(
+                color: AppColors.whiteColor,
+                onSelected: (value) {
+                  if (value == 'report') {
+                    print('Report clicked');
+                  } else if (value == 'about') {
+                    print('About clicked');
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'report',
+                    child: Text('Report'),
                   ),
-                ),
-                const SizedBox(width: 8.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(userName,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    const Text('2 days ago'),
-                  ],
-                ),
-              ],
+                  PopupMenuItem(
+                    value: 'about',
+                    child: Text('About'),
+                  ),
+                ],
+                icon: Icon(Icons.more_vert),
+                offset: Offset(0, 40),
+              ),
             ),
-            const SizedBox(height: 4.0),
             Row(
               children: [
                 Row(
@@ -607,10 +698,14 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               ),
               itemCount: reviewImages.length,
               itemBuilder: (context, index) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 240, 240, 240),
+                    borderRadius: BorderRadius.circular(9),
+                  ),
                   child: CustomImageView(
                     imagePath: reviewImages[index],
+                    fit: BoxFit.contain,
                   ),
                 );
               },
@@ -625,10 +720,10 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: isActive ? 16 : 8, // Elongate the active dot
-      height: 8, // Keep height consistent for all dots
+      width: isActive ? 16 : 8,
+      height: 8,
       decoration: BoxDecoration(
-        color: isActive ? Colors.black : Colors.grey,
+        color: isActive ? Colors.black : const Color.fromARGB(255, 90, 89, 89),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(4),
         border: Border.all(color: Colors.black),
