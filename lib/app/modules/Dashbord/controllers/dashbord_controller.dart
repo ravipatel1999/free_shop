@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class DashbordController extends GetxController {
   final count = 0.obs;
   var selectedIndex = 0.obs;
+  RxInt currentPage = 0.obs;
   var items = <CarouselItem>[
     CarouselItem(
       imageUrl: "assets/Men_Shirts.png",
@@ -10,8 +11,13 @@ class DashbordController extends GetxController {
       subtitle: 'on everything today',
     ),
     CarouselItem(
-      imageUrl: 'assets/Men_Shirts.png',
-      title: '80% offer',
+      imageUrl: "assets/red_remove_bg.png",
+      title: '35% offer',
+      subtitle: 'on everything today',
+    ),
+    CarouselItem(
+      imageUrl: 'assets/sharess.png',
+      title: '70% offer',
       subtitle: 'on everything today',
     ),
   ].obs;

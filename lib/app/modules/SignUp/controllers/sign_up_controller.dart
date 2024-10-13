@@ -1,7 +1,20 @@
+import 'dart:async';
+
+import 'package:eccomerce_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
+  final count = 0.0.obs;
+  final RxInt _start = 30.obs;
+  RxBool isButtonVisible = false.obs;
+  Timer? timer;
+  int get start => _start.value;
+  var isOtpFieldVisible = false.obs;
+
+  String appsignature = "";
+
+  RxString code = ''.obs;
   var countryCode = '+91'.obs; // Default code (observable)
   var flagUrl =
       'https://flagcdn.com/w320/in.png'.obs; // Default flag URL (observable)
@@ -131,7 +144,8 @@ class SignUpController extends GetxController {
   var isTermsAccepted = false.obs;
   var isButtonEnabled = false.obs;
   var isOtpSent = false.obs;
-
+  RxInt remainingSeconds = 30.obs;
+  final int maxTimerSeconds = 30;
   @override
   void onClose() {
     phoneController.removeListener(checkButtonState);
@@ -144,19 +158,9 @@ class SignUpController extends GetxController {
     checkButtonState();
   }
 
-  void sendOtp() {
-    if (formKey.currentState?.validate() ?? false) {
-      // Logic to send OTP
-      isOtpSent.value = true;
-      otpController.clear(); // Clear the OTP field before displaying it
-    }
-  }
-
   void verifyOtp() {
     if (formKey.currentState?.validate() ?? false) {
-      // Logic to verify OTP
-      Get.toNamed(
-          '/home'); // Navigate to the next page if OTP is verified successfully
+      Get.toNamed(Routes.BASE);
     }
   }
 
@@ -164,5 +168,43 @@ class SignUpController extends GetxController {
     isButtonEnabled.value = phoneController.text.length == 10 &&
         isTermsAccepted.value &&
         formKey.currentState?.validate() == true;
+  }
+
+  void sendOtp() {
+    // if (phoneController.text.length == 10) {
+    isOtpSent.value = true;
+    startTimer();
+    // } else {
+
+    // }
+  }
+
+  // Start the countdown timer
+  void startTimer() {
+    isButtonVisible.value = true;
+    remainingSeconds.value = maxTimerSeconds; // Reset timer
+    timer?.cancel(); // Cancel any previous timer
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (remainingSeconds.value > 0) {
+        remainingSeconds.value--;
+      } else {
+        timer.cancel();
+        isButtonVisible.value = false; // Hide the button
+      }
+    });
+  }
+
+  void onCodeChanged(String? newCode) {
+    code.value = newCode ?? '';
+    if (code.value.length == 4) {
+      FocusScope.of(Get.context!).requestFocus(FocusNode());
+      verifyOtp();
+    }
+  }
+
+  String get formattedTime {
+    int minutes = _start.value ~/ 60;
+    int seconds = _start.value % 60;
+    return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
   }
 }

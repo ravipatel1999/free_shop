@@ -12,7 +12,7 @@ class AppStyles {
   static const TextStyle loginHeaderStyle = TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w600,
-      color: Color(0xff5F464B),
+      color: AppColors.carbonColor,
       fontFamily: 'Poppins');
 
   static const TextStyle headerStyle = TextStyle(

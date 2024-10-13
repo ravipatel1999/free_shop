@@ -1,11 +1,10 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:eccomerce_app/app/custom/imagecustom.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../components/TextField/constant/app_color.dart';
+import '../../../components/testStyle/input_Style.dart';
 import '../controllers/wishlist_controller.dart';
 
 class WishlistView extends GetView<WishlistController> {
@@ -15,6 +14,11 @@ class WishlistView extends GetView<WishlistController> {
     return Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
+          title: const Text(
+            'WishList (15)',
+            style: AppStyles.fontStyleSemiBold,
+          ),
+          centerTitle: true,
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.whiteColor,
           elevation: 0,
@@ -31,8 +35,7 @@ class WishlistView extends GetView<WishlistController> {
                       height: 40,
                       decoration: BoxDecoration(
                         color: Colors.grey.shade300,
-                        borderRadius:
-                            BorderRadius.circular(5), // Same as tab bar
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       child: IconButton(
                         icon: const Icon(Icons.filter_list),

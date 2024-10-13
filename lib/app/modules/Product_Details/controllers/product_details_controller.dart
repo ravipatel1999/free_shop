@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../components/TextField/constant/app_color.dart';
-
 class ProductDetailsController extends GetxController {
   var selectedSize = 'M'.obs;
   var selectedColor = Colors.black.obs;
@@ -24,7 +22,7 @@ class ProductDetailsController extends GetxController {
     {'label': 'Material', 'value': '100% Acrylic'},
     {'label': 'SKU', 'value': 'UBL-SS-S5-C6-245'},
     {'label': 'Pattern', 'value': 'Solid'},
-  ].obs; // Make it observable
+  ].obs;
 
   var products = <Product>[
     Product(
