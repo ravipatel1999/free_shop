@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/TextField/constant/app_color.dart';
-import '../components/testStyle/input_Style.dart';
+import '../core/theme/ summer_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -14,19 +13,25 @@ class CustomButton extends StatelessWidget {
   final Border? border; // Add a border parameter
   final List<Widget> children; // Add a list of children widgets
 
-  const CustomButton({
-    Key? key,
+  CustomButton({
+    super.key,
     required this.text,
     required this.onPressed,
-    this.height = 45.0,
+    this.height = 35,
     this.width = double.infinity,
     this.color, // Nullable color to allow default use
     this.padding = EdgeInsets.zero,
     this.borderRadius = const BorderRadius.all(Radius.circular(9)),
-    this.textStyle = AppStyles.btnStyle,
+    this.textStyle = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: SummerColors.textLight,
+      height: 1.4,
+      letterSpacing: 0.5,
+    ),
     this.border, // Initialize the border parameter
     this.children = const [], // Default empty list for children
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: color ??
-              AppColors.blackColor, // Use default color if color is null
+              SummerColors.color2, // Use default color if color is null
           minimumSize: Size(width, height),
           padding: padding,
           shape: RoundedRectangleBorder(

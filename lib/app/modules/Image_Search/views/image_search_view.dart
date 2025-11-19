@@ -72,7 +72,7 @@ class _ImageSearchViewState extends State<ImageSearchView> {
               size: 30,
             ),
             onPressed: () {
-              Get.back();
+              Navigator.pop(Get.context!);
             },
           ),
           centerTitle: true,
@@ -94,7 +94,7 @@ class _ImageSearchViewState extends State<ImageSearchView> {
                       for (final barcode in barcodes) {
                         final String? code = barcode.rawValue;
                         if (code != null) {
-                          Get.snackbar('Product Found', code);
+                          // Get.snackbar('Product Found', code);
                         }
                       }
                     },

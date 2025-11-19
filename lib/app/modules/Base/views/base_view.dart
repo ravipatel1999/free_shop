@@ -1,8 +1,8 @@
-import 'package:eccomerce_app/app/modules/Cart/views/cart_view.dart';
-import 'package:eccomerce_app/app/modules/Dashbord/views/dashbord_view.dart';
+import 'package:eccomerce_app/app/modules/ReportSummery/views/report_summery_view.dart';
+import 'package:eccomerce_app/app/modules/shopping/views/shopping_view.dart';
 import 'package:eccomerce_app/app/modules/SignUp/views/sign_up_view.dart';
-import 'package:eccomerce_app/app/modules/Wishlist/views/wishlist_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../components/TextField/constant/app_color.dart';
@@ -16,51 +16,56 @@ class BaseView extends GetView<BaseController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        switch (baseController.currentIndex.value) {
-          case 0:
-            baseController.initializeDashbord();
-            return const DashbordView();
-          case 1:
-            baseController.initializeWishView();
-            return const WishlistView();
-          case 2:
-            baseController.initializeCartView();
-            return const CartView();
-          case 3:
-            baseController.initializeProfileView();
-            return const ProfileView();
-          default:
-            return const SignUpView();
-        }
-      }),
+      body: SafeArea(
+        top: false,
+        child: Obx(() {
+          switch (baseController.currentIndex.value) {
+            case 0:
+              baseController.initializeDashbord();
+              return const ShoppingView();
+            case 1:
+              baseController.initializeWishView();
+              return const ReportSummeryView();
+
+            case 2:
+              baseController.initializeProfileView();
+              return const ProfileView();
+            default:
+              return const SignUpView();
+          }
+        }),
+      ),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           currentIndex: baseController.currentIndex.value,
           onTap: baseController.changeTabIndex,
-          selectedItemColor: AppColors.blackColor,
+          selectedItemColor: Theme.of(context).primaryColor,
           unselectedItemColor: AppColors.hintColor,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          items: const [
+          unselectedFontSize: 10.sp,
+          selectedLabelStyle:
+              TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+          items: [
             BottomNavigationBarItem(
-              backgroundColor: AppColors.greenColor,
-              icon: Icon(Iconsax.home),
+              icon: Icon(
+                Iconsax.home,
+                size: 18.sp,
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Iconsax.heart),
-              label: 'Wishlist',
+              icon: Icon(
+                Iconsax.chart_2,
+                size: 18.sp,
+              ),
+              label: 'Report',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Iconsax.shopping_cart),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.user),
+              icon: Icon(
+                Iconsax.user,
+                size: 18.sp,
+              ),
               label: 'Profile',
             ),
           ],

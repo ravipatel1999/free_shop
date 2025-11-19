@@ -1,170 +1,161 @@
-import 'package:eccomerce_app/app/components/TextField/constant/app_color.dart';
-import 'package:eccomerce_app/app/components/testStyle/input_Style.dart';
-import 'package:eccomerce_app/app/custom/imagecustom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
+import '../widgets/cart_content.dart';
+import '../widgets/cart_empty_state.dart';
+import '../widgets/cart_loading_state.dart';
 
 class CartView extends GetView<CartController> {
   const CartView({super.key});
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 247, 247, 247),
-      appBar: AppBar(
-        title: const Text(
-          'Cart (15)',
-          style: AppStyles.fontStyleSemiBold,
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Obx(() {
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
+
+  void _showClearCartDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          surfaceTintColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.r), // -4 from 20
+          ),
+          title: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(8.w), // -4 from 12
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.error.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.delete_outline,
+                  color: Theme.of(context).colorScheme.error,
+                  size: 20.w, // -4 from 24
+                ),
+              ),
+              SizedBox(width: 8.w), // -4 from 12
+              Text(
+                'Clear Cart?',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 14.sp, // Adjusted for ScreenUtil
+                ),
+              ),
+            ],
+          ),
+          content: Text(
+            'Are you sure you want to remove all items from your cart? This action cannot be undone.',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              height: 1.4,
+              fontSize: 12.sp, // Adjusted for ScreenUtil
+            ),
+          ),
+          actions: [
+            Row(
               children: [
-                Container(
-                  height: height * 0.05,
-                  width: width,
-                  color: Colors.transparent,
-                  child: Container(
-                    height: height * 0.05,
-                    width: width,
-                    color: Colors.transparent,
-                    child: Obx(
-                      () => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.categories.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              left: index == 0 ? 15 : 5,
-                              right: 5,
-                            ),
-                            child: Obx(
-                              () => ElevatedButton(
-                                onPressed: () {
-                                  controller.selectCategory(index);
-                                  print('ravi$index');
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      controller.selectedIndex.value == index
-                                          ? AppColors.carbonColor
-                                          : const Color(0xFFEDEBEB),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      controller.categories[index],
-                                      style: TextStyle(
-                                        color: controller.selectedIndex.value ==
-                                                index
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    style: OutlinedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8.h), // -4 from 12
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r), // -4 from 12
+                      ),
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
+                    ),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.sp, // Adjusted for ScreenUtil
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
+                SizedBox(width: 8.w), // -4 from 12
                 Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.cartItems.length,
-                    itemBuilder: (context, index) {
-                      final item = controller.cartItems[index];
-                      return Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 0.3),
-                            borderRadius: BorderRadius.circular(15)),
-                        margin: const EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: [
-                            // Item image
-                            Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(9),
-                                  color: AppColors.whiteColor),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14.0, horizontal: 4.0),
-                                child: CustomImageView(
-                                  fit: BoxFit.contain,
-                                  imagePath: item.image,
-                                  width: 80,
-                                  height: 80,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 16.0),
-                            // Item details
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(item.name,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold)),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Size: ${item.size}'),
-                                      Icon(Icons.more_vert)
-                                    ],
-                                  ),
-                                  Text('Color: ${item.color}'),
-                                  Text('Qty: 2'),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '\$${item.price}',
-                                        style: TextStyle(
-                                            color: AppColors.blackColor,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('\$90.00',
-                                          style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              color: Colors.grey.shade600))
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
-                        ),
-                      );
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      controller.clearCart();
                     },
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8.h), // -4 from 12
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r), // -4 from 12
+                      ),
+                    ),
+                    child: Text(
+                      'Clear All',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.sp, // Adjusted for ScreenUtil
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
-          );
-        }),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        title: Text(
+          'My Cart',
+        ),
+        actions: [
+          Obx(() {
+            if (controller.cartItems.isNotEmpty &&
+                !controller.isLoading.value) {
+              return Padding(
+                padding: EdgeInsets.only(right: 12.w), // -4 from 16
+                child: IconButton(
+                  onPressed: () => _showClearCartDialog(context),
+                  icon: Container(
+                    padding: EdgeInsets.all(4.w), // -4 from 8
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      borderRadius: BorderRadius.circular(8.r), // -4 from 12
+                    ),
+                    child: Icon(
+                      Icons.delete_outline,
+                      color: Theme.of(context).colorScheme.errorContainer,
+                    ),
+                  ),
+                ),
+              );
+            }
+            return const SizedBox();
+          }),
+        ],
       ),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const CartLoadingState();
+        }
+
+        if (controller.cartItems.isEmpty) {
+          return const CartEmptyState();
+        }
+
+        return const CartContent();
+      }),
     );
   }
 }

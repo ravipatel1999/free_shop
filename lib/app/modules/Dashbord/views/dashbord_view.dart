@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../components/testStyle/input_Style.dart';
 import '../../../core/utils/size_utils.dart';
-import '../../../custom/appBar.dart';
 import '../controllers/dashbord_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -18,17 +17,15 @@ class DashbordView extends GetView<DashbordController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final double itemWidth = (MediaQuery.of(context).size.width / 2) - 16;
     final double itemHeight = MediaQuery.of(context).size.height * 0.45;
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.whiteColor,
-        title: const CustomHeader(),
-        centerTitle: true,
+        automaticallyImplyLeading: true,
+        // centerTitle: true,
       ),
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +73,6 @@ class DashbordView extends GetView<DashbordController> {
                                   () => ElevatedButton(
                                     onPressed: () {
                                       controller.selectCategory(index);
-                                      print('ravi$index');
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -114,9 +110,9 @@ class DashbordView extends GetView<DashbordController> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Row(
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -137,325 +133,312 @@ class DashbordView extends GetView<DashbordController> {
                       child: SizedBox(
                         height: itemHeight,
                         child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
+                          scrollDirection: Axis.vertical,
                           itemCount: 6,
                           itemBuilder: (context, index) {
-                            return Container(
-                              width: itemWidth,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: const Color(0xFFF6F5F5),
-                                        ),
-                                        height: itemHeight * 0.55,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: CustomImageView(
-                                            imagePath: 'assets/Men_Shirts.png',
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 1.0,
-                                        right: 1.0,
-                                        child: IconButton(
-                                          icon: CircleAvatar(
-                                            backgroundColor:
-                                                AppColors.whiteColor,
-                                            child: Icon(
-                                              Iconsax.heart,
-                                            ),
-                                          ),
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "Denzolee Men's T-Shirt",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.buttonColor,
+                            return Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                  ),
-                                  SizedBox(height: height * 0.002),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "₹157",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.buttonColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.02),
-                                      Text(
-                                        '₹113',
-                                        style: TextStyle(
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          color: AppColors.hintColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.01),
-                                      Text('28% off',
-                                          style: AppStyles.captionsText),
-                                    ],
-                                  ),
-                                  Text(
-                                    "Delivery within 1 day",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  Text(
-                                    "₹94 with 1 Special Offer",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                  Text("Free Delivery",
-                                      style: AppStyles.captionsText),
-                                  SizedBox(height: height * 0.005),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: width * 0.005),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: AppColors.greenColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 6.0),
-                                          child: Row(
-                                            children: [
-                                              Text('3',
-                                                  style: AppStyles.appBarStyle),
-                                              SizedBox(width: width * 0.005),
-                                              Icon(
-                                                Icons.star,
-                                                size: 15,
-                                                color: AppColors.whiteColor,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                color: const Color(0xFFF6F5F5),
                                               ),
-                                            ],
+                                              height: itemHeight * 0.55,
+                                              width: double.infinity,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: CustomImageView(
+                                                  imagePath:
+                                                      'assets/Men_Shirts.png',
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 1.0,
+                                              right: 1.0,
+                                              child: IconButton(
+                                                icon: const CircleAvatar(
+                                                  backgroundColor:
+                                                      AppColors.whiteColor,
+                                                  child: Icon(
+                                                    Iconsax.heart,
+                                                  ),
+                                                ),
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text(
+                                          "Denzolee Men's T-Shirt",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.buttonColor,
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: width * 0.01),
-                                      Text(
-                                        '(7)',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 12,
-                                          color: const Color.fromARGB(
-                                              255, 103, 103, 103),
+                                        SizedBox(height: height * 0.002),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "₹157",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.buttonColor,
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.02),
+                                            Text(
+                                              '₹113',
+                                              style: TextStyle(
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                color: AppColors.hintColor,
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.01),
+                                            Text('28% off',
+                                                style: AppStyles.captionsText),
+                                          ],
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          "Delivery within 1 day",
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                        Text(
+                                          "₹94 with 1 Special Offer",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        Text("Free Delivery",
+                                            style: AppStyles.captionsText),
+                                        SizedBox(height: height * 0.005),
+                                        Row(
+                                          children: [
+                                            SizedBox(width: width * 0.005),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                color: AppColors.greenColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 6.0),
+                                                child: Row(
+                                                  children: [
+                                                    Text('3',
+                                                        style: AppStyles
+                                                            .appBarStyle),
+                                                    SizedBox(
+                                                        width: width * 0.005),
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: 15,
+                                                      color:
+                                                          AppColors.whiteColor,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.01),
+                                            Text(
+                                              '(7)',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 12,
+                                                color: const Color.fromARGB(
+                                                    255, 103, 103, 103),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    // width: itemWidth,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                color: const Color(0xFFF6F5F5),
+                                              ),
+                                              height: itemHeight * 0.55,
+                                              width: double.infinity,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: CustomImageView(
+                                                  imagePath:
+                                                      'assets/Men_Shirts.png',
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 1.0,
+                                              right: 1.0,
+                                              child: IconButton(
+                                                icon: const CircleAvatar(
+                                                  backgroundColor:
+                                                      AppColors.whiteColor,
+                                                  child: Icon(
+                                                    Iconsax.heart,
+                                                  ),
+                                                ),
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text(
+                                          "Denzolee Men's T-Shirt",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.buttonColor,
+                                          ),
+                                        ),
+                                        SizedBox(height: height * 0.002),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "₹157",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.buttonColor,
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.02),
+                                            Text(
+                                              '₹113',
+                                              style: TextStyle(
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                color: AppColors.hintColor,
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.01),
+                                            Text('28% off',
+                                                style: AppStyles.captionsText),
+                                          ],
+                                        ),
+                                        Text(
+                                          "Delivery within 1 day",
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                        Text(
+                                          "₹94 with 1 Special Offer",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        Text("Free Delivery",
+                                            style: AppStyles.captionsText),
+                                        SizedBox(height: height * 0.005),
+                                        Row(
+                                          children: [
+                                            SizedBox(width: width * 0.005),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                color: AppColors.greenColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 6.0),
+                                                child: Row(
+                                                  children: [
+                                                    Text('3',
+                                                        style: AppStyles
+                                                            .appBarStyle),
+                                                    SizedBox(
+                                                        width: width * 0.005),
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: 15,
+                                                      color:
+                                                          AppColors.whiteColor,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.01),
+                                            Text(
+                                              '(7)',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 12,
+                                                color: const Color.fromARGB(
+                                                    255, 103, 103, 103),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'New Arrival',
-                          style: AppStyles.fontStyleSemiBold,
-                        ),
-                        Text(
-                          'View all',
-                          style: AppStyles.btnStyle2,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.PRODUCT_DETAILS);
-                      },
-                      child: SizedBox(
-                        height: itemHeight,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 6,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              width: itemWidth,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: const Color(0xFFF6F5F5),
-                                        ),
-                                        height: itemHeight * 0.55,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: CustomImageView(
-                                            imagePath: 'assets/sharess.png',
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 1.0,
-                                        right: 1.0,
-                                        child: IconButton(
-                                          icon: CircleAvatar(
-                                            backgroundColor:
-                                                AppColors.whiteColor,
-                                            child: Icon(
-                                              Iconsax.heart,
-                                            ),
-                                          ),
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    "Denzolee Men's T-Shirt",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.buttonColor,
-                                    ),
-                                  ),
-                                  SizedBox(height: height * 0.005),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "₹157",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.buttonColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.02),
-                                      Text(
-                                        '₹113',
-                                        style: TextStyle(
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          color: AppColors.hintColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.01),
-                                      Text('28% off',
-                                          style: AppStyles.captionsText),
-                                    ],
-                                  ),
-                                  Text(
-                                    "Delivery within 1 day",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  Text(
-                                    "₹94 with 1 Special Offer",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                  Text("Free Delivery",
-                                      style: AppStyles.captionsText),
-                                  SizedBox(height: height * 0.005),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: width * 0.005),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: AppColors.greenColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 6.0),
-                                          child: Row(
-                                            children: [
-                                              Text('3',
-                                                  style: AppStyles.appBarStyle),
-                                              SizedBox(width: width * 0.005),
-                                              Icon(
-                                                Icons.star,
-                                                size: 15,
-                                                color: AppColors.whiteColor,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.01),
-                                      Text(
-                                        '(7)',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 12,
-                                          color: const Color.fromARGB(
-                                              255, 103, 103, 103),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.all(15)),
                   ],
                 ),
               ),

@@ -35,8 +35,8 @@ class RatingReviewView extends GetView<RatingReviewController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(Iconsax.arrow_3),
-                      SizedBox(width: 8),
+                      const Icon(Iconsax.arrow_3),
+                      const SizedBox(width: 8),
                       Obx(
                         () => DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
@@ -44,8 +44,8 @@ class RatingReviewView extends GetView<RatingReviewController> {
                             value: controller.selectedValue.value == 'Sort'
                                 ? null
                                 : controller.selectedValue.value,
-                            hint: Text('Sort'),
-                            icon: Icon(Icons.arrow_drop_down),
+                            hint: const Text('Sort'),
+                            icon: const Icon(Icons.arrow_drop_down),
                             onChanged: (String? newValue) {
                               if (newValue != null) {
                                 controller.setSelectedValue(newValue);
@@ -64,7 +64,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                     ],
                   ),
                   Obx(() => ListView.separated(
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                           height: 10,
                         ),
                         shrinkWrap: true,
@@ -94,7 +94,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
   Widget _reviewCard(String userName, String userImage, int rating,
       String reviewText, List<String> reviewImages) {
     return Container(
-      margin: EdgeInsets.all(2),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
           border: Border.all(color: const Color.fromARGB(255, 218, 217, 217)),
           borderRadius: BorderRadius.circular(15)),
@@ -103,7 +103,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
         child: Column(
           children: [
             ListTile(
-              contentPadding: EdgeInsets.all(-4),
+              contentPadding: const EdgeInsets.all(-4),
               leading: CircleAvatar(
                 backgroundColor: const Color.fromARGB(255, 232, 232, 232),
                 child: CustomImageView(
@@ -112,28 +112,25 @@ class RatingReviewView extends GetView<RatingReviewController> {
               ),
               title: Text(userName,
                   style: const TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('2 days ago'),
+              subtitle: const Text('2 days ago'),
               trailing: PopupMenuButton<String>(
                 color: AppColors.whiteColor,
                 onSelected: (value) {
                   if (value == 'report') {
-                    print('Report clicked');
-                  } else if (value == 'about') {
-                    print('About clicked');
-                  }
+                  } else if (value == 'about') {}
                 },
                 itemBuilder: (context) => [
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     value: 'report',
                     child: Text('Report'),
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     value: 'about',
                     child: Text('About'),
                   ),
                 ],
-                icon: Icon(Icons.more_vert),
-                offset: Offset(0, 40),
+                icon: const Icon(Icons.more_vert),
+                offset: const Offset(0, 40),
               ),
             ),
             const SizedBox(height: 4.0),
@@ -148,7 +145,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                     );
                   }),
                 ),
-                Text('  3 stars')
+                const Text('  3 stars')
               ],
             ),
             const SizedBox(height: 8.0),
@@ -181,11 +178,11 @@ class RatingReviewView extends GetView<RatingReviewController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Colour Family: Black'),
+                  const Text('Colour Family: Black'),
                   Row(
                     children: [
                       IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Iconsax.like_15,
                           color: AppColors.hintColor,
                         ),
@@ -193,7 +190,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                       ),
                       Obx(() => Text('${controller.likeCount}')),
                       IconButton(
-                        icon: Icon(Iconsax.dislike),
+                        icon: const Icon(Iconsax.dislike),
                         onPressed: controller.incrementDislike,
                       ),
                       Obx(() => Text('${controller.dislikeCount}')),
@@ -227,7 +224,6 @@ class RatingReviewView extends GetView<RatingReviewController> {
               () => ElevatedButton(
                 onPressed: () {
                   controller.selectCategory(index);
-                  print('Selected category: $index');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: controller.selectedIndex.value == index
@@ -247,7 +243,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                             : Colors.black,
                         size: 16,
                       ),
-                    if (category['icon'] != null) SizedBox(width: 5),
+                    if (category['icon'] != null) const SizedBox(width: 5),
                     Text(
                       '${category['name']} (${category['count']})',
                       style: TextStyle(
@@ -285,7 +281,6 @@ class RatingReviewView extends GetView<RatingReviewController> {
               () => ElevatedButton(
                 onPressed: () {
                   controller.selectCategory(index);
-                  print('Selected category: $index');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: controller.selectedIndex.value == index
@@ -304,7 +299,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                           : Colors.black,
                       size: 16,
                     ),
-                    SizedBox(width: 5), // Space between icon and text
+                    const SizedBox(width: 5), // Space between icon and text
                     Text(
                       '${category['count']} (${category['total']})', // Assuming 'total' holds the second number
                       style: TextStyle(
@@ -357,12 +352,12 @@ class RatingReviewView extends GetView<RatingReviewController> {
                     ignoreGestures: true, // To make it read-only
                   ),
                   const SizedBox(height: 4.0),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(Icons.star, color: AppColors.hintColor, size: 16),
-                      const SizedBox(width: 4),
+                      SizedBox(width: 4),
                       Text('4.5 (64) * 200 Sold'),
                     ],
                   ),

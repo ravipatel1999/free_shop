@@ -76,7 +76,6 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Building CustomTextFormField with alignment: $alignment');
     return alignment != null
         ? Align(
             alignment: alignment!,

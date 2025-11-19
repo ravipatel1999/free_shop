@@ -1,3 +1,4 @@
+import 'package:eccomerce_app/app/core/theme/summer_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 
@@ -30,8 +31,7 @@ class AppStyles {
   static TextStyle inputFloatingStyle = const TextStyle(
       fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.primaryColor);
 
-  static const TextStyle btnStyle = TextStyle(
-      fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xffffffff));
+  static TextStyle btnStyle = SummerTextStyle.buttonLarge;
 
   static const TextStyle appBarStyle = TextStyle(
       fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xffffffff));

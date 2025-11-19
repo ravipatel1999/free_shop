@@ -1,41 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'app/components/TextField/constant/app_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'dart:io';
+import 'app/core/data/sharedPre.dart';
+import 'app/core/theme/light_theme.dart';
+import 'app/core/theme/dark_theme.dart';
 import 'app/routes/app_pages.dart';
+import 'generated/locales.g.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedpreferenceUtil.init();
+  HttpOverrides.global = MyHttpOverrides();
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+  ));
+
   runApp(
-    GetMaterialApp(
-      title: "Trend Mart",
-      initialRoute: AppPages.INITIAL,
-      debugShowCheckedModeBanner: false,
-      getPages: AppPages.routes,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.whiteColor,
-          surfaceTintColor: AppColors.whiteColor,
-        ),
-      ),
+    ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          title: "Trend Mart",
+          initialRoute: AppPages.INITIAL,
+          debugShowCheckedModeBanner: false,
+          getPages: AppPages.routes,
+          theme: LightTheme.themeData,
+          darkTheme: DarkTheme.themeData,
+          themeMode: ThemeMode.light,
+          translationsKeys: AppTranslation.translations,
+          locale: const Locale('en', 'US'),
+          fallbackLocale: const Locale('en', 'US'),
+          builder: (context, widget) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+        );
+      },
     ),
   );
 }
 
-class ResponsiveHelper {
-  static bool isTablet(BuildContext context) {
-    return MediaQuery.of(context).size.shortestSide >= 600;
-  }
-
-  static double getFontSize(BuildContext context, double mobileFontSize) {
-    if (isTablet(context)) {
-      return mobileFontSize * 1.5;
-    }
-    return mobileFontSize;
-  }
-
-  static double getContainerSize(BuildContext context, double mobileSize) {
-    if (isTablet(context)) {
-      return mobileSize * 1.5;
-    }
-    return mobileSize;
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

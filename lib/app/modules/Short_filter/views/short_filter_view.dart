@@ -238,7 +238,7 @@ class ShortFilterView extends GetView<ShortFilterController> {
                 child: Icon(Iconsax.arrow_left_2, color: AppColors.whiteColor),
               )),
           onPressed: () {
-            Get.back();
+            Navigator.pop(Get.context!);
           },
         ),
         Expanded(
